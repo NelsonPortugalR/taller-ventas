@@ -1,0 +1,1664 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taller de Inteligencia Artificial Aplicada</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-dark: #4338ca;
+            --secondary: #0ea5e9;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        body {
+            background-color: #f1f5f9;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 0 auto;
+        }
+        
+        .logo-icon {
+            font-size: 1.8rem;
+        }
+        
+        .hero {
+            padding: 3rem 0;
+            text-align: center;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        .module-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .module-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .module-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+            font-size: 4rem;
+        }
+        
+        .module-content {
+            padding: 1.5rem;
+        }
+        
+        .module-content h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        .module-status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+        
+        .status-available {
+            background-color: #ecfdf5;
+            color: var(--success);
+        }
+        
+        .status-upcoming {
+            background-color: #fef3c7;
+            color: var(--warning);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .btn-outline {
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            background-color: transparent;
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .module-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .module-actions .btn {
+            flex: 1;
+            font-size: 0.875rem;
+            padding: 0.5rem 1rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin: 2rem 0 1rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary);
+            border-radius: 2px;
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            margin-bottom: 1.5rem;
+            background-color: #000;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .resources {
+            background-color: #f8fafc;
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin-top: 1.5rem;
+        }
+        
+        .resource-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem;
+            border-bottom: 1px solid #e2e8f0;
+            gap: 0.75rem;
+        }
+        
+        .resource-item:last-child {
+            border-bottom: none;
+        }
+        
+        .resource-icon {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .resource-title {
+            flex: 1;
+        }
+        
+        .resource-download {
+            color: var(--primary);
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: space-between;
+        }
+        
+        .footer-section {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .footer-section h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-section h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 3px;
+            background-color: var(--primary);
+            border-radius: 1.5px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid #334155;
+            color: #94a3b8;
+        }
+        
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .hero {
+                padding: 2rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <span class="logo-icon">🧠</span>
+                <span>Taller de IA Aplicada</span>
+            </div>
+        </div>
+    </header>
+    
+    <div class="hero" style="padding: 3rem 0;">
+        <div class="container">
+            <h1>Taller de Inteligencia Artificial Aplicada</h1>
+            <p>Bienvenido a la plataforma oficial donde encontrarás todos los materiales y grabaciones del taller. Avanza a tu ritmo y aprovecha los recursos disponibles.</p>
+        </div>
+    </div>
+    
+    <main class="container">
+        <section id="modules">
+            <h2 class="section-title">Módulos del Taller</h2>
+            
+            <!-- Módulo 1 contenido directo -->
+            <!-- Reemplaza la sección actual del Módulo 1 con esto -->
+            <div class="module-card" style="margin-bottom: 2rem;">
+                <div class="module-img">
+                    🧠
+                </div>
+                <div class="module-content">
+                    <span class="module-status status-available">Disponible</span>
+                    <h3>Módulo 1: Modelos de lenguaje</h3>
+                    <p>Conoce y domina todas las capacidades que los modelos de lenguaje te ofrecen.</p>
+                    <div class="module-actions">
+                        <a href="#" class="btn btn-primary" id="modulo1-toggle">Ver Contenido</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Este div contiene todo el contenido actual del módulo 1 -->
+            <div id="modulo1-content" style="display: none; background-color: white; border-radius: 10px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);">
+                <h3 style="margin-bottom: 1rem; font-size: 1.5rem; color: var(--dark);">Módulo 1: Modelos de lenguaje</h3>
+                <p style="margin-bottom: 1.5rem;">Conoce y domina todas las capacidades que los modelos de lenguaje te ofrecen.</p>
+                
+                <div class="video-container">
+                    <iframe id="vimeo-player" style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://player.vimeo.com/video/1063132876" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                
+                <button id="transcription-toggle" class="btn btn-outline" style="margin-top: 1.5rem;">Ver Resumen</button>
+                
+                <div id="transcription-content" style="display: none; margin-top: 1.5rem; padding: 1.5rem; background-color: #f8fafc; border-radius: 8px; border-left: 4px solid var(--primary);">
+                    <h4>Transcripción del Módulo 1: Modelos de lenguaje</h4>
+                    <ul style="list-style-type: none; padding: 0;">
+                        <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">
+                            <strong>00:00:00 - 00:15:00</strong> - Bienvenida, presentación inicial de participantes y expectativas personales respecto al uso práctico de la IA en sus trabajos.
+                        </li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">
+                            <strong>00:15:01 - 00:30:00</strong> - Introducción al concepto de Inteligencia Artificial Aplicada, resaltando cómo combinar conocimientos especializados con herramientas tecnológicas existentes.
+                        </li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">
+                            <strong>00:30:01 - 00:45:00</strong> - Presentación de los modelos de lenguaje (LLM), qué son, cómo funcionan y ejemplos prácticos de uso en el ámbito laboral.
+                        </li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">
+                            <strong>00:45:01 - 01:00:00</strong> - Explicación sobre la importancia de la mentalidad para el aprendizaje de nuevas tecnologías, destacando la gestión de errores y frustraciones durante el proceso.
+                        </li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">
+                            <strong>01:00:01 - 01:15:00</strong> - Práctica guiada para la creación de cuentas y uso inicial de modelos de lenguaje específicos como ChatGPT, Claude y Grok.
+                        </li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">
+                            <strong>01:15:01 - 01:30:00</strong> - Ejemplos específicos sobre cómo se entrenan los modelos de lenguaje, significado de parámetros y cómo esto influye en su funcionamiento.
+                        </li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">
+                            <strong>01:30:01 - 01:45:00</strong> - Interacción práctica con los modelos para generar ejemplos personalizados sobre aplicaciones concretas de la IA en actividades laborales específicas.
+                        </li>
+                        <li style="padding: 8px 0;">
+                            <strong>01:45:01 - 02:00:00</strong> - Ejercicio final con sugerencias específicas dadas por los modelos sobre cómo aprovechar mejor la IA; reflexiones y cierre de la sesión con recomendaciones finales.
+                        </li>
+                    </ul>
+                </div>
+                
+                <h3 style="margin-top: 2rem;">Recursos Adicionales</h3>
+                <div class="resources">
+                    <div class="resource-item" id="modelos-lenguaje-item">
+                        <div class="resource-icon">📝</div>
+                        <div class="resource-title">Lista de Modelos de Lenguaje</div>
+                        <div class="resource-download" onclick="toggleModelList()">
+                            <span id="model-list-toggle">Ver Lista</span>
+                            <span>▼</span>
+                        </div>
+                    </div>
+                    <div id="modelos-list" style="display: none; margin-left: 2.5rem; padding: 1rem; background-color: #f1f5f9; border-radius: 6px;">
+                        <ul style="list-style-type: none; padding: 0;">
+                            <li style="margin-bottom: 0.5rem;"><a href="https://claude.ai/" target="_blank" style="color: var(--primary); text-decoration: none;">Claude</a></li>
+                            <li style="margin-bottom: 0.5rem;"><a href="https://grok.com/" target="_blank" style="color: var(--primary); text-decoration: none;">Grok</a></li>
+                            <li style="margin-bottom: 0.5rem;"><a href="https://chatgpt.com" target="_blank" style="color: var(--primary); text-decoration: none;">ChatGPT</a></li>
+                            <li style="margin-bottom: 0.5rem;"><a href="https://chat.deepseek.com/" target="_blank" style="color: var(--primary); text-decoration: none;">Deepseek</a></li>
+                            <li style="margin-bottom: 0.5rem;"><a href="https://chat.mistral.ai/chat" target="_blank" style="color: var(--primary); text-decoration: none;">Mistral</a></li>
+                            <li style="margin-bottom: 0.5rem;"><a href="https://gemini.google.com/app" target="_blank" style="color: var(--primary); text-decoration: none;">Gemini</a></li>
+                            <li><a href="https://meta.ai/" target="_blank" style="color: var(--primary); text-decoration: none;">Meta</a></li>
+                        </ul>
+                    </div>
+            
+                    
+                    <div class="resource-item">
+                        <div class="resource-icon">🔖</div>
+                        <div class="resource-title">Prompt para potenciar tu Expertise</div>
+                        <div class="resource-download" onclick="togglePrompt()">
+                            <span id="prompt-toggle">Ver Prompt</span>
+                            <span>▼</span>
+                        </div>
+                    </div>
+                    <div id="prompt-content" style="display: none; margin-left: 2.5rem; padding: 1rem; background-color: #f1f5f9; border-radius: 6px;">
+                        <p style="margin-bottom: 1rem;"><strong>Instrucción:</strong> Copia este prompt y pégalo en el modelo de lenguaje de tu elección (ChatGPT, Claude, Gemini, etc.). Personalízalo con tu profesión y tareas específicas para obtener sugerencias adaptadas a tu trabajo.</p>
+                        
+                        <div style="position: relative; margin-bottom: 1rem;">
+                            <h4 style="margin-bottom: 1rem;">Prompt para el profesional:</h4>
+                            <div style="position: relative;">
+                                <pre id="copy-text" style="white-space: pre-line; font-family: monospace; background-color: #f8fafc; padding: 1rem; border-radius: 4px; border-left: 3px solid var(--primary); margin: 0;">Soy [escribe aquí tu profesión] y mis actividades técnicas incluyen [tu tarea técnica específica, mientras más detallada mejor]. 
+                    Quiero utilizar ChatGPT para mejorar mi eficiencia y desempeño en estas áreas. Por favor, sugiéreme tres maneras específicas en las que puedo aprovechar ChatGPT para lograrlo. Para cada idea, proporciona:
+                    * Un prompt específico que pueda usar, indicando entre corchetes los datos que debo ingresar.
+                    * Una descripción detallada de cómo utilizar esa recomendación en mi trabajo diario.
+                    * El tipo de resultado que me proporcionará ChatGPT.
+                    * Cómo puedo aplicar ese resultado para mejorar mis tareas técnicas.</pre>
+                                <button onclick="copyPrompt()" id="copy-button" style="position: absolute; top: -24px; right: 10px; background-color: var(--primary); color: white; border: none; border-radius: 4px; padding: 5px 10px; cursor: pointer; font-size: 0.8rem;">Copiar</button>
+                            </div>
+                        </div>
+                        
+                        <h4 style="margin-top: 1.5rem; margin-bottom: 1rem;">Ejemplos de referencia:</h4>
+                        
+                        <div style="margin-bottom: 1rem;">
+                            <h5 style="margin-bottom: 0.5rem;">Ejemplo aplicado 1:</h5>
+                            <p style="margin-bottom: 1rem;">Si eres un agrónomo dedicado al diagnóstico de enfermedades en cultivos, podrías ingresar:</p>
+                            <p style="white-space: pre-line; font-family: monospace; background-color: #f8fafc; padding: 1rem; border-radius: 4px; border-left: 3px solid var(--success);">"Soy **agrónomo** y mis actividades técnicas incluyen el **diagnóstico de enfermedades en cultivos**. Por favor, sugiéreme tres maneras específicas en las que puedo utilizar ChatGPT para mejorar o facilitar estas tareas técnicas. Para cada idea, proporciona:
+                    * Un **prompt específico** que pueda usar, indicando entre corchetes los datos que debo ingresar.
+                    * Una **descripción de cómo hacer uso** de esa recomendación.
+                    * El **tipo de resultado** que proporcionará ChatGPT.
+                    * Cómo puedo **utilizar ese output** en mi trabajo."</p>
+                        </div>
+                        
+                        <div>
+                            <h5 style="margin-bottom: 0.5rem;">Ejemplo aplicado 2:</h5>
+                            <p style="margin-bottom: 1rem;">Si eres un analista de datos, podrías ingresar:</p>
+                            <p style="white-space: pre-line; font-family: monospace; background-color: #f8fafc; padding: 1rem; border-radius: 4px; border-left: 3px solid var(--success);">Soy **analista de datos** y mis actividades técnicas incluyen el **análisis de vibraciones y aceites para mantenimiento predictivo**. Quiero utilizar ChatGPT para mejorar mi eficiencia y desempeño en estas áreas. Por favor, sugiéreme tres maneras específicas en las que puedo aprovechar ChatGPT para lograrlo. Para cada idea, proporciona:
+                    * Un **prompt específico** que pueda usar, indicando entre corchetes los datos que debo ingresar.
+                    * Una **descripción detallada** de cómo utilizar esa recomendación en mi trabajo diario.
+                    * El **tipo de resultado** que me proporcionará ChatGPT.
+                    * Cómo puedo **aplicar ese resultado** para mejorar mis tareas técnicas."</p>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-icon">🧠</div>
+                        <div class="resource-title">Cómo obtienen información los modelos de lenguaje</div>
+                        <div class="resource-download">
+                            <a href="https://docs.google.com/document/d/1whKDZGyxRiZpACzJAAYMiXrhzm3OE69iIByctRSeQwI/edit?usp=sharing" target="_blank" style="color: var(--primary); text-decoration: none;">
+                                <span>Descargar</span>
+                                <span>↓</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-icon">📊</div>
+                        <div class="resource-title">Fundamentos de la IA</div>
+                        <div class="resource-download">
+                            <a href="https://drive.google.com/file/d/1MS506BvnPnJVdy76cPbYm9G6ZYRNkG46/view?usp=sharing" target="_blank" style="color: var(--primary); text-decoration: none;">
+                                <span>Descargar</span>
+                                <span>↓</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-icon">📄</div>
+                        <div class="resource-title">Guía de Mentalidad</div>
+                        <div class="resource-download">
+                            <a href="https://drive.google.com/file/d/130-Hebuf6R2rRMxkcCwbE415NEV4jhDX/view?usp=sharing" target="_blank" style="color: var(--primary); text-decoration: none;">
+                                <span>Descargar</span>
+                                <span>↓</span>
+                            </a>
+                        </div>
+                    </div>
+            
+                    
+                    <div class="resource-item">
+                        <div class="resource-icon">⚙️</div>
+                        <div class="resource-title">Capacidades de los modelos de lenguaje</div>
+                        <div class="resource-download" onclick="toggleCapabilities()">
+                            <span id="capabilities-toggle">Ver capacidades</span>
+                            <span>▼</span>
+                        </div>
+                    </div>
+                    <div id="capabilities-content" style="display: none; margin-left: 2.5rem; margin-top: 1rem; padding: 1rem; background-color: #f1f5f9; border-radius: 6px; max-width: 600px;">
+                        <div id="accordion-capabilities">
+                            <div class="accordion-item" onclick="toggleAccordion('creation')">
+                                <h5 style="font-size: 1.1rem; font-weight: 500; color: var(--primary); margin-bottom: 0.5rem; cursor: pointer;">1️⃣ CREACIÓN DE CONTENIDO</h5>
+                                <ul id="creation-content" style="list-style-type: disc; padding-left: 1.5rem; color: var(--dark); font-size: 1.1rem; line-height: 1.5; display: none;">
+                                    <li><strong>Redacción de textos:</strong> Escribir informes, emails y artículos profesionales</li>
+                                    <li><strong>Crear/mejorar documentos:</strong> Pulir y perfeccionar textos existentes</li>
+                                    <li><strong>Contenido para presentaciones:</strong> Estructurar mensajes clave y narrativas</li>
+                                    <li><strong>Generar ideas:</strong> Proponer soluciones creativas a problemas</li>
+                                    <li><strong>Describir imágenes:</strong> Especificar detalles para creación visual</li>
+                                    <li><strong>Hacer gráficas/comparativos:</strong> Esquematizar visualizaciones de datos</li>
+                                </ul>
+                            </div>
+
+                            <div class="accordion-item" onclick="toggleAccordion('analysis')">
+                                <h5 style="font-size: 1.1rem; font-weight: 500; color: var(--primary); margin-bottom: 0.5rem; cursor: pointer;">2️⃣ ANÁLISIS E INVESTIGACIÓN</h5>
+                                <ul id="analysis-content" style="list-style-type: disc; padding-left: 1.5rem; color: var(--dark); font-size: 1.1rem; line-height: 1.5; display: none;">
+                                    <li><strong>Resumir documentos:</strong> Extraer puntos clave de textos extensos</li>
+                                    <li><strong>Investigar temas:</strong> Compilar información sobre asuntos específicos</li>
+                                    <li><strong>Analizar páginas web:</strong> Extraer y organizar contenido online</li>
+                                    <li><strong>Análisis crítico:</strong> Evaluar fortalezas/debilidades de argumentos</li>
+                                    <li><strong>Procesar datos:</strong> Identificar patrones y generar conclusiones</li>
+                                    <li><strong>Comparar alternativas:</strong> Contrastar opciones con criterios objetivos</li>
+                                </ul>
+                            </div>
+                            <div class="accordion-item" onclick="toggleAccordion('technical')">
+                                <h5 style="font-size: 1.1rem; font-weight: 500; color: var(--primary); margin-bottom: 0.5rem; cursor: pointer;">3️⃣ ASISTENCIA TÉCNICA</h5>
+                                <ul id="technical-content" style="list-style-type: disc; padding-left: 1.5rem; color: var(--dark); font-size: 1.1rem; line-height: 1.5; display: none;">
+                                    <li><strong>Escribir código:</strong> Desarrollar soluciones en diversos lenguajes</li>
+                                    <li><strong>Depurar problemas:</strong> Identificar y corregir errores técnicos</li>
+                                    <li><strong>Optimizar prompts:</strong> Mejorar instrucciones para otras IAs</li>
+                                    <li><strong>Transformar formatos:</strong> Convertir datos entre diferentes sistemas</li>
+                                    <li><strong>Crear páginas web:</strong> Generar código HTML, CSS y JavaScript</li>
+                                    <li><strong>Explicar conceptos técnicos:</strong> Simplificar temas complejos</li>
+                                </ul>
+                            </div>
+                            <div class="accordion-item" onclick="toggleAccordion('productivity')">
+                                <h5 style="font-size: 1.1rem; font-weight: 500; color: var(--primary); margin-bottom: 0.5rem; cursor: pointer;">4️⃣ PRODUCTIVIDAD Y ORGANIZACIÓN</h5>
+                                <ul id="productivity-content" style="list-style-type: disc; padding-left: 1.5rem; color: var(--dark); font-size: 1.1rem; line-height: 1.5; display: none;">
+                                    <li><strong>Organizar tareas:</strong> Estructurar y priorizar actividades</li>
+                                    <li><strong>Planificar proyectos:</strong> Desarrollar cronogramas y distribución de recursos</li>
+                                    <li><strong>Crear sistemas:</strong> Diseñar procesos para tareas recurrentes</li>
+                                    <li><strong>Generar checklists:</strong> Elaborar listas de verificación completas</li>
+                                    <li><strong>Diseñar plantillas:</strong> Crear formatos reusables para trabajo diario</li>
+                                    <li><strong>Organizar información:</strong> Categorizar datos para fácil acceso</li>
+                                </ul>
+                            </div>
+                            <div class="accordion-item" onclick="toggleAccordion('communication')">
+                                <h5 style="font-size: 1.1rem; font-weight: 500; color: var(--primary); margin-bottom: 0.5rem; cursor: pointer;">5️⃣ COMUNICACIÓN Y COLABORACIÓN</h5>
+                                <ul id="communication-content" style="list-style-type: disc; padding-left: 1.5rem; color: var(--dark); font-size: 1.1rem; line-height: 1.5; display: none;">
+                                    <li><strong>Traducir contenido:</strong> Convertir textos entre múltiples idiomas</li>
+                                    <li><strong>Simular conversaciones:</strong> Practicar escenarios comunicativos</li>
+                                    <li><strong>Adaptar mensajes:</strong> Ajustar comunicación según audiencia y contexto</li>
+                                    <li><strong>Revisar comunicaciones:</strong> Mejorar claridad y efectividad de mensajes</li>
+                                    <li><strong>Preparar reuniones:</strong> Desarrollar agendas y puntos de discusión</li>
+                                    <li><strong>Crear argumentarios:</strong> Estructurar razones persuasivas para propuestas</li>
+                                </ul>
+                            </div>
+                            <div class="accordion-item" onclick="toggleAccordion('specialized')">
+                                <h5 style="font-size: 1.1rem; font-weight: 500; color: var(--primary); margin-bottom: 0.5rem; cursor: pointer;">6️⃣ CONOCIMIENTO ESPECIALIZADO</h5>
+                                <ul id="specialized-content" style="list-style-type: disc; padding-left: 1.5rem; color: var(--dark); font-size: 1.1rem; line-height: 1.5; display: none;">
+                                    <li><strong>Facilitar aprendizaje:</strong> Explicar conceptos nuevos paso a paso</li>
+                                    <li><strong>Clarificar normativas:</strong> Interpretar leyes y regulaciones aplicables</li>
+                                    <li><strong>Identificar tendencias:</strong> Detectar patrones emergentes en industrias</li>
+                                    <li><strong>Responder consultas técnicas:</strong> Resolver dudas en campos específicos</li>
+                                    <li><strong>Simplificar lo complejo:</strong> Hacer accesible información especializada</li>
+                                    <li><strong>Encontrar referencias:</strong> Identificar fuentes relevantes para investigación</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>      
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-icon">💡</div>
+                        <div class="resource-title">Generador de promtps para tu gestión</div>
+                        <div class="resource-download" onclick="togglePromptGenerator()">
+                            <span id="prompt-generator-toggle">Ver generador de prompt</span>
+                            <span>▼</span>
+                        </div>
+                    </div>
+            
+                    <div id="prompt-generator-content" style="display: none; margin-left: 2.5rem; margin-top: 1.5rem; padding: 1rem; background-color: #f1f5f9; border-radius: 6px;">
+                        <div style="max-width: 800px;">
+                            <h4 style="font-size: 1.2rem; margin-bottom: 1rem; color: var(--dark);">Generador de Prompts para IA</h4>
+                            
+                            <div style="margin-bottom: 1.5rem;">
+                                <label style="display: block; color: var(--dark); font-weight: 600; margin-bottom: 0.5rem;">
+                                    Selecciona una capacidad:
+                                </label>
+                                <select 
+                                    id="capability-select"
+                                    style="width: 100%; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 6px; background-color: white; color: var(--dark);"
+                                >
+                                    <option value="">-- Selecciona una capacidad --</option>
+                                    <!-- Las opciones se cargarán con JavaScript -->
+                                </select>
+                            </div>
+                    
+                            <div id="question-container" style="margin-bottom: 1.5rem; display: none;">
+                                <label id="question-label" style="display: block; color: var(--dark); font-weight: 600; margin-bottom: 0.5rem;">
+                                    <!-- Pregunta aquí -->
+                                </label>
+                                <div id="answer-example" style="margin-bottom: 0.5rem; color: var(--gray); font-style: italic; font-size: 0.875rem;">
+                                    <!-- Ejemplo de respuesta aquí -->
+                                </div>
+                                <textarea
+                                    id="custom-input"
+                                    style="width: 100%; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 6px; background-color: white; resize: vertical; min-height: 100px;"
+                                    placeholder="Ingresa tu respuesta aquí..."
+                                ></textarea>
+                            </div>
+                    
+                            <div id="generate-button-container" style="margin-bottom: 1rem; display: none;">
+                                <button
+                                    id="generate-button"
+                                    class="btn btn-primary"
+                                    style="width: 100%;"
+                                >
+                                    Generar Prompt
+                                </button>
+                            </div>
+                    
+                            <div id="result-container" style="display: none;">
+                                <div style="padding: 1rem; border: 1px solid #e2e8f0; border-radius: 6px; background-color: var(--light);">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                                        <h5 style="font-size: 1rem; font-weight: 600; color: var(--dark);">Prompt Generado:</h5>
+                                        <button
+                                            id="copy-button"
+                                            style="background-color: var(--gray); color: white; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.875rem; cursor: pointer;"
+                                        >
+                                            Copiar
+                                        </button>
+                                    </div>
+                                    <div id="generated-prompt" style="padding: 0.75rem; background-color: white; border: 1px solid #e2e8f0; border-radius: 4px; white-space: pre-wrap; font-family: monospace;">
+                                        <!-- Prompt generado aquí -->
+                                    </div>
+                                </div>
+                                
+                                <div style="margin-top: 1rem; padding: 1rem; border: 1px solid #e2e8f0; border-radius: 6px; background-color: var(--light);">
+                                    <h5 style="font-size: 1rem; font-weight: 600; color: var(--dark); margin-bottom: 0.5rem;">Ejemplo de prompt:</h5>
+                                    <div id="example-prompt" style="padding: 0.75rem; background-color: white; border: 1px solid #e2e8f0; border-radius: 4px; white-space: pre-wrap; font-family: monospace;">
+                                        <!-- Ejemplo aquí -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                   <div class="module-card" style="margin-bottom: 2rem;">
+                        <div class="module-img">
+                            💻
+                        </div>
+                        <div class="module-content">
+                            <span class="module-status status-available">Disponible</span>
+                            <h3>Módulo 2: Ingeniería de prompts</h3>
+                            <p>Diseña prompts que optimicen tus flujos de trabajo diarios mediante una efectiva simbiosis humano-IA.</p>
+                            <div class="module-actions">
+                                <a href="#" class="btn btn-primary" id="modulo2-toggle">Ver Contenido</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Este div contiene todo el contenido del módulo 2 -->
+                    <div id="modulo2-content" style="display: none; background-color: white; border-radius: 10px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);">
+                        <h3 style="margin-bottom: 1rem; font-size: 1.5rem; color: var(--dark);">Módulo 2: Ingeniería de prompts</h3>
+                        <p style="margin-bottom: 1.5rem;">Diseña prompts que optimicen tus flujos de trabajo diarios mediante una efectiva simbiosis humano-IA.</p>
+                        
+                        <div class="video-container">
+                            <iframe id="vimeo-player" style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://player.vimeo.com/video/1065326937" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        
+                        <button id="transcription-toggle-2" class="btn btn-outline" style="margin-top: 1.5rem;">Ver Resumen</button>
+                        
+                        <div id="transcription-content-2" style="display: none; margin-top: 1.5rem; padding: 1.5rem; background-color: #f8fafc; border-radius: 8px; border-left: 4px solid var(--primary);">
+                            <h4>Transcripción del Módulo 2: Ingeniería de prompts</h4>
+                            <ul style="list-style-type: none; padding: 0;">
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">
+                                    <strong>00:00:00 - 00:15:00</strong> - Bienvenida e introducción a la sesión, enfocada en ingeniería de prompts y el impacto de la IA en la productividad profesional.
+                                </li>
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">
+                                    <strong>00:15:01 - 00:30:00</strong> - Explicación sobre cómo estructurar solicitudes efectivas a modelos de IA, incluyendo detalles, contexto y ejemplos para obtener respuestas útiles.
+                                </li>
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">
+                                    <strong>00:30:01 - 00:45:00</strong> - Presentación de las capacidades y limitaciones de los modelos de lenguaje, destacando su utilidad en tareas de texto (análisis, correos, presentaciones) y sus debilidades en diseño visual o automatización.
+                                </li>
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">
+                                    <strong>00:45:01 - 01:00:00</strong> - Demostración práctica de ChatGPT para crear presentaciones y generar contenido, con ejemplos como resúmenes históricos o preguntas de examen.
+                                </li>
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">
+                                    <strong>01:00:01 - 01:15:00</strong> - Discusión sobre diferencias entre versiones gratuitas y pagadas de modelos (ChatGPT, Grok, Claude), confidencialidad y recursos para participantes.
+                                </li>
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">
+                                    <strong>01:15:01 - 01:30:00</strong> - Explicación de tres niveles de uso de IA en generación de contenido: consultas generales, uso de contexto y prompts predefinidos para tareas repetitivas.
+                                </li>
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">
+                                    <strong>01:30:01 - 01:45:00</strong> - Ejercicio práctico en grupos para crear prompts personalizados, como analizar tardanzas laborales y generar gráficos reutilizables.
+                                </li>
+                                <li style="padding: 8px 0;">
+                                    <strong>01:45:01 - 02:00:00</strong> - Revisión de trabajos grupales, discusión sobre sesgos en IA y estrategias de mitigación (iteración, verificación cruzada), cierre con reflexiones y siguientes pasos.
+.
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <h3 style="margin-top: 2rem;">Recursos Adicionales</h3>
+                        <div class="resources">
+                            <div class="resource-item">
+                                <div class="resource-icon">📝</div>
+                                <div class="resource-title">Anatomía de un prompt</div>
+                                <div class="resource-download">
+                                    <a href="https://docs.google.com/document/d/1XX9dW_YM8s9HH2t13UwXb6bhSNCkI-TBw52KeNhDNGY/edit?tab=t.0" target="_blank" style="color: var(--primary); text-decoration: none;">
+                                        <span>Descargar guía</span>
+                                        <span>↓</span>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div class="resource-item">
+                                <div class="resource-icon">🔖</div>
+                                <div class="resource-title">Ecosistema del Prompting</div>
+                                <div class="resource-download">
+                                    <a href="https://docs.google.com/document/d/1AQQ8NO-BcjOf-gxv5hJ1dgThODP27jBC450eHZr_i-s/edit?tab=t.0#heading=h.h3q6l2qnioyw" target="_blank" style="color: var(--primary); text-decoration: none;">
+                                        <span>Descargar guía</span>
+                                        <span>↓</span>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div class="resource-item">
+                                <div class="resource-icon">📄</div>
+                                <div class="resource-title">Caso de Estudio Tardanzas</div>
+                                <div class="resource-download">
+                                    <a href="https://docs.google.com/document/d/1qQD14HFTF4xfRdb-qE9a0yyECumMIkvCCEE8N2kwnqA/edit?tab=t.0" target="_blank" style="color: var(--primary); text-decoration: none;">
+                                        <span>Descargar caso</span>
+                                        <span>↓</span>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div class="resource-item">
+                                <div class="resource-icon">⚙️</div>
+                                <div class="resource-title">Sesgos de los LLM</div>
+                                <div class="resource-download">
+                                    <a href="https://docs.google.com/document/d/1TbH3y77aM4Vljcv8ibTWASc_CoTAI_RV7spUz6YJZxk/edit?tab=t.0#heading=h.40yh1hixzbwx" target="_blank" style="color: var(--primary); text-decoration: none;">
+                                        <span>Descargar guía</span>
+                                        <span>↓</span>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div class="resource-item">
+                                <div class="resource-icon">💡</div>
+                                <div class="resource-title">Tácticas de Prompting</div>
+                                <div class="resource-download">
+                                    <a href="https://docs.google.com/document/d/1T8UFt6Ckgl_Nz4pj4hn2oy7-n_1qchEXzfsnouAURm0/edit?tab=t.0" target="_blank" style="color: var(--primary); text-decoration: none;">
+                                        <span>Descargar guía</span>
+                                        <span>↓</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="module-card" style="margin-bottom: 2rem;">
+                        <div class="module-img">
+                            🔍
+                        </div>
+                        <div class="module-content">
+                            <span class="module-status status-available">Disponible</span>
+                            <h3>Módulo 3: Herramientas no-code</h3>
+                            <p>Conviértete en experto en el uso de plataformas y aplicaciones de IA para potenciar tu gestión.</p>
+                            <div class="module-actions">
+                                <a href="#" class="btn btn-primary" id="modulo3-toggle">Ver Contenido</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="modulo3-content" style="display: none; background-color: white; border-radius: 10px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);">
+                        <h3 style="margin-bottom: 1rem; font-size: 1.5rem; color: var(--dark);">Módulo 3: Herramientas no-code</h3>
+                        <p style="margin-bottom: 1.5rem;">Conviértete en experto en el uso de plataformas y aplicaciones de IA para potenciar tu gestión.</p>
+                        
+                        <div class="video-container">
+                            <iframe id="vimeo-player" style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://player.vimeo.com/video/1068120725" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        
+                        <button id="transcription-toggle-3" class="btn btn-outline" style="margin-top: 1.5rem;">Ver Resumen</button>
+                        
+                        <div id="transcription-content-3" style="display: none; margin-top: 1.5rem; padding: 1.5rem; background-color: #f8fafc; border-radius: 8px; border-left: 4px solid var(--primary);">
+                            <h4>Transcripción del Módulo 3: Herramientas prácticas de Inteligencia Artificial</h4>
+                            <ul style="list-style-type: none; padding: 0;">
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">
+                                    <strong>00:00:00 - 00:15:00</strong> - Nelson da la bienvenida y presenta la sesión enfocada en explorar herramientas prácticas de IA, enfatizando su aplicación para optimizar procesos creativos y profesionales.
+                                </li>
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">
+                                    <strong>00:15:01 - 00:30:00</strong> - Se presenta el concepto del "Triángulo de Sinergia de IA", destacando cómo combinar modelos de lenguaje, conocimiento especializado y creatividad humana para generar aplicaciones personalizadas como canciones o presentaciones.
+                                </li>
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">
+                                    <strong>00:30:01 - 00:45:00</strong> - Nelson realiza una demostración práctica usando Suno.ai para crear canciones personalizadas mediante prompts detallados, destacando la importancia de gestionar frustraciones y aprender de los errores durante la interacción con estas herramientas.
+                                </li>
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">
+                                    <strong>00:45:01 - 01:00:00</strong> - Se introduce Zoom AI Companion, explicando sus capacidades para resumir reuniones, generar tareas pendientes y analizar conversaciones, así como integraciones similares en plataformas como Gemini (Google) y Copilot (Microsoft).
+                                </li>
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">
+                                    <strong>01:00:01 - 01:15:00</strong> - Nelson explora herramientas integradas en aplicaciones cotidianas, mostrando cómo utilizarlas para tareas de reformulación de texto, desarrollo de contenido, generación y edición de imágenes utilizando Grog y Google AI Studio.
+                                </li>
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">
+                                    <strong>01:15:01 - 01:30:00</strong> - Se presenta un ejercicio interactivo con la creación de un juego de "desenredar nudos" usando IA, ilustrando cómo la inteligencia artificial puede generar contenido lúdico y práctico rápidamente.
+                                </li>
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">
+                                    <strong>01:30:01 - 01:45:00</strong> - Nelson demuestra cómo la IA puede mejorar procesos técnicos, usando como ejemplo una página web para una tienda de golosinas únicas y un sistema de mantenimiento, incluyendo generación automática de documentación y flujogramas.
+                                </li>
+                                <li style="padding: 8px 0;">
+                                    <strong>01:45:01 - 02:00:00</strong> - Finalmente, se exploran herramientas de contenido audiovisual como Gen para creación de videos con avatares y Elevenlabs para crear agentes conversacionales. La sesión concluye resaltando la importancia de adaptarse a estas tecnologías emergentes y anticipando la próxima reunión centrada en automatización de flujos de trabajo.
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <h3 style="margin-top: 2rem;">Recursos Adicionales</h3>
+                        <div class="resources">
+                            <div class="resource-item">
+                                <div class="resource-icon">📊</div>
+                                <div class="resource-title">Propósito de las Herramientas de IA</div>
+                                <div class="resource-download" onclick="togglePurposeIA()">
+                                    <span id="purpose-toggle">Ver concepto</span>
+                                    <span>▼</span>
+                                </div>
+                            </div>
+                            <div id="purpose-content" style="display: none; margin-left: 2.5rem; padding: 1rem; background-color: #f1f5f9; border-radius: 6px;">
+                                <img src="http://nelsonportugal.com/wp-content/uploads/2025/03/Herramientas-Especializadas-.png" alt="Propósito de las Herramientas de IA" style="max-width: 100%; height: auto;">
+                            </div>
+                            
+                            <div class="resource-item">
+                                <div class="resource-icon">🔺</div>
+                                <div class="resource-title">El triángulo de las herramientas</div>
+                                <div class="resource-download" onclick="toggleTriangleIA()">
+                                    <span id="triangle-toggle">Ver concepto</span>
+                                    <span>▼</span>
+                                </div>
+                            </div>
+                            <div id="triangle-content" style="display: none; margin-left: 2.5rem; padding: 1rem; background-color: #f1f5f9; border-radius: 6px;">
+                                <img src="http://nelsonportugal.com/wp-content/uploads/2025/03/El-Triangulo-de-las-Herramientas-de-IA.png" alt="El Triángulo de las Herramientas de IA" style="max-width: 100%; height: auto;">
+                            </div>
+                            
+                            <div class="resource-item">
+                                <div class="resource-icon">📌</div>
+                                <div class="resource-title">Las máximas de las herramientas IA</div>
+                                <div class="resource-download" onclick="toggleMaximsIA()">
+                                    <span id="maxims-toggle">Ver concepto</span>
+                                    <span>▼</span>
+                                </div>
+                            </div>
+                            <div id="maxims-content" style="display: none; margin-left: 2.5rem; padding: 1rem; background-color: #f1f5f9; border-radius: 6px;">
+                                <img src="http://nelsonportugal.com/wp-content/uploads/2025/03/Maximas-de-las-Herramientas-de-IA.png" alt="Máximas de las Herramientas de IA" style="max-width: 100%; height: auto;">
+                            </div>
+                            
+                            <div class="resource-item">
+                                <div class="resource-icon">📝</div>
+                                <div class="resource-title">Los seis usos de los LLM</div>
+                                <div class="resource-download">
+                                    <a href="https://docs.google.com/document/d/1jMEFDEnxPyf7OnRcwNOWiY0VLa0zlPp9R2fEE8ReTDA/edit?tab=t.0#heading=h.rda7y2ps4mww" target="_blank" style="color: var(--primary); text-decoration: none;">
+                                        <span>Descargar</span>
+                                        <span>↓</span>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div class="resource-item">
+                                <div class="resource-icon">🧰</div>
+                                <div class="resource-title">Herramientas revisadas</div>
+                                <div class="resource-download" onclick="toggleToolsList()">
+                                    <span id="tools-list-toggle">Ver lista</span>
+                                    <span>▼</span>
+                                </div>
+                            </div>
+                            <div id="tools-list" style="display: none; margin-left: 2.5rem; padding: 1rem; background-color: #f1f5f9; border-radius: 6px;">
+                                <ul style="list-style-type: disc; padding-left: 1.5rem;">
+                                    <li style="margin-bottom: 0.5rem;"><a href="https://suno.com" target="_blank" style="color: var(--primary); text-decoration: none;">Suno.com</a></li>
+                                    <li style="margin-bottom: 0.5rem;"><a href="https://landing.ai/" target="_blank" style="color: var(--primary); text-decoration: none;">Landing.ai</a></li>
+                                    <li style="margin-bottom: 0.5rem;"><a href="https://aistudio.google.com/" target="_blank" style="color: var(--primary); text-decoration: none;">Google AI Studio</a></li>
+                                    <li style="margin-bottom: 0.5rem;"><a href="https://elevenlabs.io/conversational-ai" target="_blank" style="color: var(--primary); text-decoration: none;">Elevenlabs</a></li>
+                                    <li><a href="https://heygen.com/" target="_blank" style="color: var(--primary); text-decoration: none;">HeyGen</a></li>
+                                </ul>
+                            </div>
+                            
+                            <div class="resource-item">
+                                <div class="resource-icon">📋</div>
+                                <div class="resource-title">Lista completa de herramientas</div>
+                                <div class="resource-download">
+                                    <a href="https://docs.google.com/spreadsheets/d/13o6jin8oEzsWWLyZaZrgIra-J_Y-w4p0TVR0hEjS_Lk/edit?usp=sharing" target="_blank" style="color: var(--primary); text-decoration: none;">
+                                        <span>Descargar</span>
+                                        <span>↓</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>            
+            
+                    
+                    <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const modulo2Toggle = document.getElementById('modulo2-toggle');
+                        const modulo2Content = document.getElementById('modulo2-content');
+                        
+                        modulo2Toggle.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            if (modulo2Content.style.display === 'none') {
+                                modulo2Content.style.display = 'block';
+                                modulo2Toggle.textContent = 'Ocultar Contenido';
+                            } else {
+                                modulo2Content.style.display = 'none';
+                                modulo2Toggle.textContent = 'Ver Contenido';
+                            }
+                        });
+                        
+                        const transcriptionToggle2 = document.getElementById('transcription-toggle-2');
+                        const transcriptionContent2 = document.getElementById('transcription-content-2');
+                        
+                        transcriptionToggle2.addEventListener('click', function() {
+                            if (transcriptionContent2.style.display === 'none') {
+                                transcriptionContent2.style.display = 'block';
+                                transcriptionToggle2.textContent = 'Ocultar Resumen';
+                            } else {
+                                transcriptionContent2.style.display = 'none';
+                                transcriptionToggle2.textContent = 'Ver Resumen';
+                            }
+                        });
+                    });
+                    </script>
+                            
+            <!-- Añade este código JavaScript al final del archivo (antes de cerrar la etiqueta </body>) -->
+            <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const modulo1Toggle = document.getElementById('modulo1-toggle');
+                const modulo1Content = document.getElementById('modulo1-content');
+                
+                modulo1Toggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (modulo1Content.style.display === 'none') {
+                        modulo1Content.style.display = 'block';
+                        modulo1Toggle.textContent = 'Ocultar Contenido';
+                    } else {
+                        modulo1Content.style.display = 'none';
+                        modulo1Toggle.textContent = 'Ver Contenido';
+                    }
+                });
+            });
+
+
+            // Funcionalidad para el Módulo 3
+            document.addEventListener('DOMContentLoaded', function() {
+                const modulo3Toggle = document.getElementById('modulo3-toggle');
+                const modulo3Content = document.getElementById('modulo3-content');
+                
+                if (modulo3Toggle) {
+                    modulo3Toggle.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        if (modulo3Content.style.display === 'none') {
+                            modulo3Content.style.display = 'block';
+                            modulo3Toggle.textContent = 'Ocultar Contenido';
+                        } else {
+                            modulo3Content.style.display = 'none';
+                            modulo3Toggle.textContent = 'Ver Contenido';
+                        }
+                    });
+                }
+                
+                const transcriptionToggle3 = document.getElementById('transcription-toggle-3');
+                const transcriptionContent3 = document.getElementById('transcription-content-3');
+                
+                if (transcriptionToggle3) {
+                    transcriptionToggle3.addEventListener('click', function() {
+                        if (transcriptionContent3.style.display === 'none') {
+                            transcriptionContent3.style.display = 'block';
+                            transcriptionToggle3.textContent = 'Ocultar Resumen';
+                        } else {
+                            transcriptionContent3.style.display = 'none';
+                            transcriptionToggle3.textContent = 'Ver Resumen';
+                        }
+                    });
+                }
+            });
+            
+            // Funciones para mostrar/ocultar recursos del Módulo 3
+            function togglePurposeIA() {
+                const purposeContent = document.getElementById('purpose-content');
+                const purposeToggle = document.getElementById('purpose-toggle');
+                
+                if (purposeContent.style.display === 'none') {
+                    purposeContent.style.display = 'block';
+                    purposeToggle.textContent = 'Ocultar concepto';
+                } else {
+                    purposeContent.style.display = 'none';
+                    purposeToggle.textContent = 'Ver concepto';
+                }
+            }
+            
+            function toggleTriangleIA() {
+                const triangleContent = document.getElementById('triangle-content');
+                const triangleToggle = document.getElementById('triangle-toggle');
+                
+                if (triangleContent.style.display === 'none') {
+                    triangleContent.style.display = 'block';
+                    triangleToggle.textContent = 'Ocultar concepto';
+                } else {
+                    triangleContent.style.display = 'none';
+                    triangleToggle.textContent = 'Ver concepto';
+                }
+            }
+            
+            function toggleMaximsIA() {
+                const maximsContent = document.getElementById('maxims-content');
+                const maximsToggle = document.getElementById('maxims-toggle');
+                
+                if (maximsContent.style.display === 'none') {
+                    maximsContent.style.display = 'block';
+                    maximsToggle.textContent = 'Ocultar concepto';
+                } else {
+                    maximsContent.style.display = 'none';
+                    maximsToggle.textContent = 'Ver concepto';
+                }
+            }
+            
+            function toggleToolsList() {
+                const toolsList = document.getElementById('tools-list');
+                const toolsListToggle = document.getElementById('tools-list-toggle');
+                
+                if (toolsList.style.display === 'none') {
+                    toolsList.style.display = 'block';
+                    toolsListToggle.textContent = 'Ocultar lista';
+                } else {
+                    toolsList.style.display = 'none';
+                    toolsListToggle.textContent = 'Ver lista';
+                }
+            }    
+            </script>
+            
+            
+                
+<div class="module-card" style="margin-bottom: 2rem;">
+    <div class="module-img">
+        🚀
+    </div>
+    <div class="module-content">
+        <span class="module-status status-available">Disponible</span>
+        <h3>Módulo 4: Integración de aplicativos</h3>
+        <p>Aprende a automatizar procesos de manera eficiente y libera tiempo para lo estratégico.</p>
+        <div class="module-actions">
+            <a href="#" class="btn btn-primary" id="modulo4-toggle">Ver Contenido</a>
+        </div>
+    </div>
+</div>
+
+<!-- Este div contiene todo el contenido del módulo 4 -->
+<div id="modulo4-content" style="display: none; background-color: white; border-radius: 10px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);">
+    <h3 style="margin-bottom: 1rem; font-size: 1.5rem; color: var(--dark);">Módulo 4: Integración de aplicativos</h3>
+    <p style="margin-bottom: 1.5rem;">Aprende a automatizar procesos de manera eficiente y libera tiempo para lo estratégico.</p>
+    
+    <div class="video-container">
+        <iframe id="vimeo-player" style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://player.vimeo.com/video/1072140512" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    
+    <button id="transcription-toggle-4" class="btn btn-outline" style="margin-top: 1.5rem;">Ver Resumen</button>
+    
+    <div id="transcription-content-4" style="display: none; margin-top: 1.5rem; padding: 1.5rem; background-color: #f8fafc; border-radius: 8px; border-left: 4px solid var(--primary);">
+        <h4>Transcripción de la Sesión 4: Automatización e Integración de Aplicativos</h4>
+        <ul style="list-style-type: none; padding: 0;">
+            <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">
+                <strong>00:00:00 - 00:15:00</strong> - Inicio con saludos entre el facilitador y los participantes (Fran, Lorenzo, Fernando, César). Pregunta cómo han estado y qué han explorado. Fran comparte su uso de IA para crear modelos 3D desde fotos para su emprendimiento de impresión 3D. Se elogia la iniciativa y se sugieren integraciones con Claude.
+            </li>
+            <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">
+                <strong>00:15:01 - 00:30:00</strong> - Introducción al tema de automatización con integración de aplicativos y repaso de conceptos previos (modelos de lenguaje, prompts, herramientas no-code). César plantea recibir 50-100 correos diarios en Outlook y querer ordenarlos para no perder certificados por firmar.
+            </li>
+            <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">
+                <strong>00:30:01 - 00:45:00</strong> - Explicación sobre elegir tareas repetitivas para automatizar, usando el caso de César (30 min diarios = 120 horas/año) reducible a 12 horas con 62 horas de configuración. Fran propone un flujo: "Si el stock baja los viernes, comprar al proveedor".
+            </li>
+            <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">
+                <strong>00:45:01 - 01:00:00</strong> - Presentación de gatilladores (hora, lugar, eventos) y acciones, con ejemplos como "Si llega un correo, categorízalo", y preparación de una demostración en Zapier con un Google Sheets de candidatos (nombre, cargo, empresa, email, estado).
+            </li>
+            <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">
+                <strong>01:00:01 - 01:15:00</strong> - Configuración en Zapier de un flujo: cambio en "estado" a "aceptado" dispara un correo personalizado, con filtro para "aceptado". Invitación a los participantes a replicarlo con un Google Sheets y Zapier.
+            </li>
+            <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">
+                <strong>01:15:01 - 01:30:00</strong> - Guía para practicar en Zapier, pidiendo enviar el correo al facilitador, y compartiendo el truco "sheets.new". Respuesta a Fran sobre la ejecución (2 min) fija en la versión gratuita, ajustable en planes pagos.
+            </li>
+            <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">
+                <strong>01:30:01 - 01:45:00</strong> - Muestra de ejemplos: notificar candidatos no aceptados desde Excel, subir facturas a Drive, y automatizar memorándums con formularios. Miguel pregunta por Outlook y Dynamics; se recomienda Power Automate para entornos Microsoft.
+            </li>
+            <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">
+                <strong>01:45:01 - 02:00:00</strong> - Introducción a agentes de IA: automatizaciones con modelos de lenguaje que deciden sin mapear todo. Configuración de un agente en Zapier que busca a "Julio Gómez" en Google Sheets, revisa correos y envía un resumen, destacando su flexibilidad.
+            </li>
+            <li style="padding: 8px 0;">
+                <strong>02:00:01 - 02:15:00</strong> - Cierre con reflexiones: Miguel valora las herramientas para su entorno corporativo; César destaca el aprendizaje progresivo; Fran aprecia el cambio en la interacción con la tecnología. Se comparten grabaciones, sesiones individuales gratuitas y un bootcamp (17 de abril).
+            </li>
+        </ul>
+    </div>
+    
+    <h3 style="margin-top: 2rem;">Recursos Adicionales</h3>
+    <div class="resources">
+        <div class="resource-item">
+            <div class="resource-icon">🔄</div>
+            <div class="resource-title">Herramientas de integración de flujos de trabajo no-code</div>
+            <div class="resource-download" onclick="toggleNoCodeTools()">
+                <span id="no-code-tools-toggle">Ver lista</span>
+                <span>▼</span>
+            </div>
+        </div>
+        <div id="no-code-tools-list" style="display: none; margin-left: 2.5rem; padding: 1rem; background-color: #f1f5f9; border-radius: 6px;">
+            <ul style="list-style-type: disc; padding-left: 1.5rem;">
+                <li style="margin-bottom: 0.5rem;"><a href="https://zapier.com" target="_blank" style="color: var(--primary); text-decoration: none;">Zapier</a></li>
+                <li style="margin-bottom: 0.5rem;"><a href="https://powerautomate.microsoft.com" target="_blank" style="color: var(--primary); text-decoration: none;">Power Automate</a></li>
+                <li style="margin-bottom: 0.5rem;"><a href="https://make.com" target="_blank" style="color: var(--primary); text-decoration: none;">Make</a></li>
+                <li><a href="https://lindy.ai" target="_blank" style="color: var(--primary); text-decoration: none;">Lindy</a></li>
+            </ul>
+        </div>
+        
+        <div class="resource-item">
+            <div class="resource-icon">💻</div>
+            <div class="resource-title">Herramientas de integración de flujos de trabajo con código</div>
+            <div class="resource-download" onclick="toggleCodeTools()">
+                <span id="code-tools-toggle">Ver lista</span>
+                <span>▼</span>
+            </div>
+        </div>
+        <div id="code-tools-list" style="display: none; margin-left: 2.5rem; padding: 1rem; background-color: #f1f5f9; border-radius: 6px;">
+            <ul style="list-style-type: disc; padding-left: 1.5rem;">
+                <li style="margin-bottom: 0.5rem;"><a href="https://developers.google.com/apps-script" target="_blank" style="color: var(--primary); text-decoration: none;">App Script</a></li>
+                <li style="margin-bottom: 0.5rem;"><a href="https://www.python.org" target="_blank" style="color: var(--primary); text-decoration: none;">Python</a></li>
+                <li style="margin-bottom: 0.5rem;"><a href="https://code.visualstudio.com" target="_blank" style="color: var(--primary); text-decoration: none;">Visual Studio Code</a></li>
+                <li><a href="https://cursor.sh" target="_blank" style="color: var(--primary); text-decoration: none;">Cursor</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+        <!-- Botón flotante de promoción -->
+        <div id="promo-container" class="promo-container" style="position: fixed; bottom: 20px; right: 20px; width: 300px; z-index: 1000; transition: all 0.3s ease;">
+            <div class="promo-box" style="background: linear-gradient(to right, var(--primary), var(--secondary)); border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); padding: 20px; color: white;">
+                <div class="promo-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <h4 style="margin: 0; font-size: 16px; font-weight: 600;">¡Da el siguiente paso ahora!</h4>
+                </div>
+                <div id="promo-content">
+                    <p style="font-size: 14px; margin-bottom: 15px;">No dejes que nada te detenga, domina la automatización laboral y conviértete en irremplazable.</p>
+                    <a href="https://nelsonportugalr.github.io/" target="_blank" class="btn" style="background-color: white; color: var(--primary); font-weight: 600; padding: 10px 15px; border-radius: 6px; text-decoration: none; display: block; text-align: center; transition: all 0.2s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">Descubre cómo</a>
+                </div>
+            </div>
+        </div>
+            
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-section">
+                <h4>Sobre el Taller</h4>
+                <p>El Taller de Inteligencia Artificial Aplicada está diseñado para proporcionar conocimientos prácticos y teóricos en el campo de la IA, permitiendo a los participantes desarrollar habilidades aplicables en entornos profesionales.</p>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>© 2025 Taller de Inteligencia Artificial Aplicada. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Función para mostrar/ocultar la lista de modelos
+        function toggleModelList() {
+            const modelList = document.getElementById('modelos-list');
+            const modelListToggle = document.getElementById('model-list-toggle');
+            
+            if (modelList.style.display === 'none') {
+                modelList.style.display = 'block';
+                modelListToggle.textContent = 'Ocultar Lista';
+            } else {
+                modelList.style.display = 'none';
+                modelListToggle.textContent = 'Ver Lista';
+            }
+        }
+
+        // Función para mostrar/ocultar el prompt
+        function togglePrompt() {
+            const promptContent = document.getElementById('prompt-content');
+            const promptToggle = document.getElementById('prompt-toggle');
+            
+            if (promptContent.style.display === 'none') {
+                promptContent.style.display = 'block';
+                promptToggle.textContent = 'Ocultar Prompt';
+            } else {
+                promptContent.style.display = 'none';
+                promptToggle.textContent = 'Ver Prompt';
+            }
+        }
+
+        // Función para copiar el prompt al portapapeles
+        function copyPrompt() {
+            const promptText = document.getElementById('copy-text').innerText;
+            navigator.clipboard.writeText(promptText).then(function() {
+                const copyButton = document.getElementById('copy-button');
+                copyButton.textContent = '¡Copiado!';
+                copyButton.style.backgroundColor = 'var(--success)';
+                
+                setTimeout(function() {
+                    copyButton.textContent = 'Copiar';
+                    copyButton.style.backgroundColor = 'var(--primary)';
+                }, 2000);
+            }).catch(function(err) {
+                console.error('Error al copiar texto: ', err);
+                alert('No se pudo copiar el texto. Por favor, selecciona el texto y cópialo manualmente.');
+            });
+        }
+                
+        // Inicializar la transcripción
+        document.addEventListener('DOMContentLoaded', function() {
+            const transcriptionToggle = document.getElementById('transcription-toggle');
+            const transcriptionContent = document.getElementById('transcription-content');
+            
+            transcriptionToggle.addEventListener('click', function() {
+                if (transcriptionContent.style.display === 'none') {
+                    transcriptionContent.style.display = 'block';
+                    transcriptionToggle.textContent = 'Ocultar Transcripción';
+                } else {
+                    transcriptionContent.style.display = 'none';
+                    transcriptionToggle.textContent = 'Ver Transcripción';
+                }
+            });
+        });
+
+        // Función para mostrar/ocultar el generador de prompts
+        function togglePromptGenerator() {
+            const promptGeneratorContent = document.getElementById('prompt-generator-content');
+            const promptGeneratorToggle = document.getElementById('prompt-generator-toggle');
+            
+            if (promptGeneratorContent.style.display === 'none') {
+                promptGeneratorContent.style.display = 'block';
+                promptGeneratorToggle.textContent = 'Ocultar generador de prompt';
+            } else {
+                promptGeneratorContent.style.display = 'none';
+                promptGeneratorToggle.textContent = 'Ver generador de prompt';
+            }
+        }
+
+
+        // Función para mostrar/ocultar las capacidades
+        function toggleCapabilities() {
+            const capabilitiesContent = document.getElementById('capabilities-content');
+            const capabilitiesToggle = document.getElementById('capabilities-toggle');
+            
+            if (capabilitiesContent.style.display === 'none') {
+                capabilitiesContent.style.display = 'block';
+                capabilitiesToggle.textContent = 'Ocultar capacidades';
+            } else {
+                capabilitiesContent.style.display = 'none';
+                capabilitiesToggle.textContent = 'Ver capacidades';
+            }
+        }
+        
+        // Función para manejar el acordeón
+        function toggleAccordion(category) {
+            const content = document.getElementById(category + '-content');
+            if (content.style.display === 'none' || content.style.display === '') {
+                content.style.display = 'block';
+            } else {
+                content.style.display = 'none';
+            }
+        }
+        
+
+        // Función para mostrar/ocultar las capacidades
+        function toggleCapabilities() {
+            const capabilitiesContent = document.getElementById('capabilities-content');
+            const capabilitiesToggle = document.getElementById('capabilities-toggle');
+            
+            if (capabilitiesContent.style.display === 'none') {
+                capabilitiesContent.style.display = 'block';
+                capabilitiesToggle.textContent = 'Ocultar capacidades';
+            } else {
+                capabilitiesContent.style.display = 'none';
+                capabilitiesToggle.textContent = 'Ver capacidades';
+            }
+        }
+        // Los datos de capacidades
+        const capabilities = [
+            {
+                id: 1,
+                name: "APRENDIZAJE",
+                question: "A nivel profesional y/o empresarial, ¿cuál es uno o dos temas sobre los cuáles te gustaría aprender más?",
+                answerExample: "Marketing digital para pequeñas empresas",
+                example: "Guíame, paso a paso sobre cómo crear un blog de marketing digital, asume que soy principiante, verifica que he aprendido antes de darme el siguiente paso, conforme voy confirmando mi avance puedes avanzar un poco más rápido"
+            },
+            {
+                id: 2,
+                name: "HACER IMÁGENES",
+                question: "¿Qué imagenes te gustaría crear?",
+                answerExample: "Un paisaje de montañas con un lago al atardecer",
+                example: "Crea una imagen que represente el concepto de trabajo en equipo en una startup moderna. Incluye personas diversas colaborando en un espacio de trabajo abierto con tecnología avanzada. Utiliza un estilo de ilustración digital vibrante. La imagen debe transmitir energía, innovación y colaboración."
+            },
+            {
+                id: 3,
+                name: "SOLUCIÓN TÉCNICA",
+                question: "¿Cuál es un problema técnico que te gustaría resolver, ya sea en tu celular, computadora y/o algún software/herramienta específica?",
+                answerExample: "Mi computadora está lenta y tarda mucho en iniciar aplicaciones",
+                example: "Tengo un problema con mi impresora, el dispositivo que uso es una HP OfficeJet Pro 9015 y no puedo imprimir documentos a doble cara, ayúdame a resolverlo, no te saltes pasos y explícame detalladamente"
+            },
+            {
+                id: 4,
+                name: "GENERAR PROMPT",
+                question: "¿Sobre qué tema o tarea específica has estado tratando de obtener información más precisa o detallada recientemente?",
+                answerExample: "Análisis de datos para toma de decisiones empresariales",
+                example: "Genera un prompt efectivo para obtener un análisis detallado de las tendencias de mercado en el sector de energías renovables. El prompt debe ser detallado, claro y diseñado para obtener la mejor respuesta posible de un modelo de IA. Incluye solicitudes de datos estadísticos, ejemplos de empresas líderes y proyecciones futuras. Considera factores como las políticas gubernamentales, avances tecnológicos y cambios en la demanda del consumidor."
+            },
+            {
+                id: 5,
+                name: "HACER CONTENIDO DE PRESENTACIÓN",
+                question: "¿Qué presentación debes elaborar, realizar y/o mejorar en los próximos días?",
+                answerExample: "Presentación sobre los resultados financieros del último trimestre para la junta directiva",
+                example: "Haz la estructura y el contenido de una presentación sobre estrategias de marketing en redes sociales. La audiencia es un grupo de pequeños empresarios locales. Los puntos clave que quiero cubrir son: importancia de las redes sociales para negocios locales, estrategias efectivas para cada plataforma principal (Facebook, Instagram, Twitter), y cómo medir el retorno de inversión. Por favor, ayúdame a estructurar la presentación, sugiriendo títulos para cada diapositiva y el contenido principal que debería incluir. Asegúrate de que la presentación sea atractiva y fácil de seguir."
+            },
+            {
+                id: 6,
+                name: "ORGANIZAR TAREAS",
+                question: "¿Qué es lo que más te estresa de tu lista de pendientes en este momento?",
+                answerExample: "Tengo que completar 3 informes, preparar una presentación y coordinar un evento en la próxima semana",
+                example: "Tengo las siguientes tareas para completar: terminar el informe de ventas mensual, preparar la presentación para el cliente potencial, actualizar el sitio web de la empresa, y coordinar el evento de team building. Ayúdame a organizarlas en un plan de acción, considerando que tengo una semana para completarlas, limitaciones de tiempo debido a reuniones diarias, y que necesito la ayuda de mi equipo para algunas tareas. Proporciona un cronograma sugerido para la semana y consejos para manejar posibles obstáculos como conflictos de horarios o retrasos inesperados."
+            },
+            {
+                id: 7,
+                name: "SITUACIONES INTERPERSONALES",
+                question: "¿Qué aspecto en relación a la comunicación, desempeño y/o relacionamiento de tu equipo te gustaría mejorar?",
+                answerExample: "La comunicación entre los departamentos de ventas y marketing",
+                example: "Estoy enfrentando una situación en mi equipo donde hay falta de comunicación y colaboración entre los departamentos de ventas y marketing. Mi objetivo es mejorar la coordinación y alineación de objetivos entre estos dos equipos. ¿Puedes proporcionarme estrategias paso a paso para abordar este problema, incluyendo ejemplos de cómo comunicarme efectivamente y posibles ejercicios o actividades para mejorar la dinámica del equipo?"
+            },
+            {
+                id: 8,
+                name: "ANALIZAR DOCUMENTOS / RESUMIR",
+                question: "¿Qué documento, manual o término técnico te gustaría entender mejor?",
+                answerExample: "El Reglamento General de Protección de Datos (RGPD)",
+                example: "Necesito entender mejor el Reglamento General de Protección de Datos (RGPD). Por favor, proporciona un resumen detallado que incluya: los puntos principales, cualquier término técnico importante con sus definiciones, y cómo se aplica esto en un contexto práctico. Si es posible, incluye un ejemplo o caso de estudio para ilustrar los conceptos clave."
+            },
+            {
+                id: 9,
+                name: "CREAR/MEJORAR DOCUMENTOS",
+                question: "¿Qué tipos de documentos o informes redactas con frecuencia en tu trabajo?",
+                answerExample: "Informes de progreso de proyectos semanales",
+                example: "Regularmente redacto informes de progreso de proyectos en mi trabajo. Necesito mejorar su estructura y contenido. ¿Puedes proporcionarme una plantilla detallada para este tipo de documento, incluyendo secciones sugeridas, qué información debería incluir en cada una, y consejos para hacer el documento más efectivo y fácil de leer? También, por favor, dame algunos ejemplos de frases o párrafos que podría usar en diferentes partes del documento."
+            },
+            {
+                id: 10,
+                name: "ARGUMENTAR Y CONTRAARGUMENTAR",
+                question: "¿De qué se tratará la próxima reunión que tendrás en los próximos días?, ¿qué te gustaría comunicar?",
+                answerExample: "Reunión sobre la implementación de un nuevo sistema CRM, quiero comunicar la necesidad de invertir en esta herramienta",
+                example: "Tengo una reunión próxima sobre la implementación de un nuevo sistema de gestión de relaciones con clientes (CRM). Quiero comunicar la necesidad de invertir en esta herramienta para mejorar nuestras ventas y servicio al cliente. ¿Puedes ayudarme a preparar argumentos sólidos para respaldar mi posición? Además, anticipa posibles contraargumentos que puedan surgir y cómo podría responder a ellos de manera efectiva. Por favor, incluye datos o ejemplos que puedan fortalecer mi argumentación."
+            },
+            {
+                id: 11,
+                name: "REDACCIÓN DE TEXTOS",
+                question: "¿Qué mensaje, correo, publicación o contenido debes elaborar y/o enviar en esta semana?",
+                answerExample: "Un correo electrónico sobre una propuesta de colaboración para un proyecto de sostenibilidad",
+                example: "Necesito escribir un correo electrónico sobre una propuesta de colaboración para un proyecto de sostenibilidad. El objetivo es conseguir una reunión con el director de responsabilidad social corporativa de una importante empresa de tecnología. La audiencia es profesionales de alto nivel con poco tiempo libre. ¿Puedes ayudarme a redactar este texto, asegurándote de que sea claro, persuasivo y apropiado para la audiencia? Por favor, incluye una estructura sugerida y frases clave que debería utilizar."
+            },
+            {
+                id: 12,
+                name: "TRADUCCIÓN",
+                question: "¿Hay algún documento, guía, página o archivo en otro idioma que te gustaría entender y/o resumir?",
+                answerExample: "Un informe técnico en inglés sobre inteligencia artificial aplicada a la atención al cliente",
+                example: "Tengo un informe técnico en inglés que necesito entender. El tema es sobre avances recientes en inteligencia artificial aplicada a la atención al cliente. ¿Puedes proporcionarme un resumen detallado en español, destacando los puntos principales y cualquier término técnico importante? Si hay alguna parte que parezca particularmente importante o compleja, por favor proporciona una traducción más literal de esa sección."
+            },
+            {
+                id: 13,
+                name: "ANÁLISIS DE PÁGINA WEB",
+                question: "¿De qué competidor, proveedor, organización o institución te gustaría analizar su página web?",
+                answerExample: "Netflix",
+                example: "Me gustaría analizar la página web de Netflix. Por favor, realiza un análisis detallado que incluya: estructura del sitio, diseño visual, contenido principal, llamadas a la acción, estrategia de SEO aparente, y cualquier característica única o innovadora. Además, compara brevemente con los estándares de la industria del streaming y sugiere áreas de mejora potencial."
+            },
+            {
+                id: 14,
+                name: "LEYES",
+                question: "¿Qué documento legal debes analizar, qué situación legal debes atender y/o sobre qué ley te gustaría tener un mayor entendimiento?",
+                answerExample: "La Ley de Protección al Consumidor en México",
+                example: "Necesito entender mejor la Ley de Protección al Consumidor en México. Por favor, proporciona un resumen en lenguaje sencillo que incluya: los puntos principales de la ley, cómo se aplica en situaciones prácticas, y cualquier caso legal relevante que ayude a ilustrar su interpretación. Si hay términos legales complejos, por favor defínelos. También, ¿podrías sugerir algunos recursos confiables para obtener más información?"
+            },
+            {
+                id: 15,
+                name: "GENERAR IDEAS",
+                question: "¿Qué problema aún no sabes cómo resolver?",
+                answerExample: "Alta rotación de personal en nuestra empresa de desarrollo de software",
+                example: "Estoy tratando de resolver el siguiente problema: alta rotación de personal en nuestra empresa de desarrollo de software. Necesito ideas creativas y prácticas. Por favor, genera una lista de al menos 10 posibles soluciones, incluyendo tanto enfoques convencionales como no convencionales. Para cada idea, proporciona una breve explicación de cómo podría implementarse y sus posibles pros y contras."
+            },
+            {
+                id: 16,
+                name: "HACER GRÁFICAS / COMPARATIVOS",
+                question: "¿Qué información, documentos o datos sueles analizar en tu día a día?",
+                answerExample: "Datos de ventas trimestrales de los últimos 3 años para nuestros 5 productos principales",
+                example: "Necesito crear una gráfica comparativa basada en los siguientes datos de ventas trimestrales de los últimos 3 años para nuestros 5 productos principales. El objetivo es mostrar claramente las tendencias de ventas y identificar patrones estacionales. ¿Puedes sugerir el mejor tipo de gráfica para representar esta información y explicar por qué? Además, proporciona una descripción detallada de cómo debería estructurarse la gráfica, incluyendo títulos, etiquetas de ejes, leyendas, y cualquier otro elemento relevante."
+            },
+            {
+            id: 17,
+            name: "VISUALIZAR CONCEPTOS",
+            question: "¿Qué concepto te gustaría explicar de mejor manera?",
+            answerExample: "La idea de que mientras más veces hagamos algo, mejores resultados tendremos",
+            example: "Crea una visualización atractiva, que sea fácil de entender y explicar sobre la idea de que mientras más veces hagamos algo, mejores resultados tendremos. Asegúrate de conceptualizar gráficamente la idea principal."
+            },
+            {
+                id: 18,
+                name: "INVESTIGAR",
+                question: "¿Qué es algo que siempre has querido saber pero no has tenido tiempo para averiguar?",
+                answerExample: "La historia y evolución de la inteligencia artificial",
+                example: "Siempre he querido saber más sobre la historia y evolución de la inteligencia artificial. Por favor, realiza una investigación completa y proporciona un informe detallado que incluya: antecedentes históricos, conceptos clave, desarrollos recientes, aplicaciones prácticas, y perspectivas futuras. Asegúrate de incluir datos interesantes y curiosidades que puedan no ser ampliamente conocidas. También, sugiere recursos adicionales para seguir aprendiendo sobre este tema."
+            },
+            {
+                id: 19,
+                name: "CONVERTIR ARCHIVOS",
+                question: "¿Tienes algún archivo que deseas convertir a otro, presenta algún error o dejas modificar?",
+                answerExample: "Un PDF de un manual de políticas y procedimientos que necesito convertir a Word",
+                example: "Convierte este archivo PDF a formato Word. El contenido es un manual de políticas y procedimientos de recursos humanos. Muéstrame el resultado convertido."
+            },
+            {
+                id: 20,
+                name: "CREACIÓN / PROGRAMACIÓN",
+                question: "¿Hay algún tipo de programa básico que te gustaría crear?",
+                answerExample: "Un programa que genere cotizaciones para una empresa de servicios de limpieza",
+                example: "Crea un programa que genere cotizaciones para una empresa de servicios de limpieza. El programa debe permitir al usuario ingresar el tipo de servicio (limpieza residencial, comercial o industrial), el tamaño del espacio en metros cuadrados, y servicios adicionales opcionales (como limpieza de ventanas o alfombras). Debe calcular el precio basado en estas variables y generar una cotización formal en formato PDF."
+            }
+        ];
+
+        // Elementos del DOM para el generador de prompts
+        const capabilitySelect = document.getElementById('capability-select');
+        const questionContainer = document.getElementById('question-container');
+        const questionLabel = document.getElementById('question-label');
+        const answerExample = document.getElementById('answer-example');
+        const customInput = document.getElementById('custom-input');
+        const generateButtonContainer = document.getElementById('generate-button-container');
+        const generateButton = document.getElementById('generate-button');
+        const resultContainer = document.getElementById('result-container');
+        const generatedPromptElement = document.getElementById('generated-prompt');
+        const examplePromptElement = document.getElementById('example-prompt');
+        const copyButton = document.getElementById('copy-button');
+
+        // Cargar las opciones de capacidades
+        capabilities.forEach(cap => {
+            const option = document.createElement('option');
+            option.value = cap.id;
+            option.textContent = cap.name;
+            capabilitySelect.appendChild(option);
+        });
+
+        // Event listeners para el generador de prompts
+        capabilitySelect.addEventListener('change', handleCapabilityChange);
+        generateButton.addEventListener('click', generatePrompt);
+        copyButton.addEventListener('click', copyToClipboard);
+
+        function handleCapabilityChange() {
+            const selectedCapabilityId = capabilitySelect.value;
+            
+            if (selectedCapabilityId) {
+                const capability = capabilities.find(cap => cap.id.toString() === selectedCapabilityId);
+                
+                questionLabel.textContent = capability.question;
+                answerExample.textContent = `Ejemplo de respuesta: "${capability.answerExample}"`;
+                
+                questionContainer.style.display = 'block';
+                generateButtonContainer.style.display = 'block';
+                resultContainer.style.display = 'none';
+                customInput.value = '';
+            } else {
+                questionContainer.style.display = 'none';
+                generateButtonContainer.style.display = 'none';
+                resultContainer.style.display = 'none';
+            }
+        }
+
+        function generatePrompt() {
+            const selectedCapabilityId = parseInt(capabilitySelect.value);
+            const input = customInput.value.trim();
+            
+            if (!selectedCapabilityId || !input) {
+                alert('Por favor selecciona una capacidad y proporciona la información necesaria.');
+                return;
+            }
+
+            let finalPrompt = '';
+            
+            switch (selectedCapabilityId) {
+                case 1: // APRENDIZAJE
+                    finalPrompt = `Guíame, paso a paso sobre ${input} asume que soy principiante, verifica que he aprendido antes de darme el siguiente paso, conforme voy confirmando mi avance puedes avanzar un poco más rápido`;
+                    break;
+                case 2: // HACER IMÁGENES
+                    finalPrompt = `Crea una imagen que represente ${input}.`;
+                    break;
+                case 3: // SOLUCIÓN TÉCNICA
+                    finalPrompt = `Tengo un problema con ${input}, ayúdame a resolverlo, no te saltes pasos y explícame detalladamente`;
+                    break;
+                case 4: // GENERAR PROMPT
+                    finalPrompt = `Genera un prompt efectivo para ${input}. El prompt debe ser detallado, claro y diseñado para obtener la mejor respuesta posible de un modelo de IA.`;
+                    break;
+                case 5: // HACER CONTENIDO DE PRESENTACIÓN
+                    finalPrompt = `Haz la estructura de una presentación sobre ${input}. Por favor, ayúdame a estructurar la presentación, sugiriendo títulos para cada diapositiva y el contenido principal que debería incluir. Asegúrate de que la presentación sea atractiva y fácil de seguir.`;
+                    break;
+                case 6: // ORGANIZAR TAREAS
+                    finalPrompt = `Tengo las siguientes tareas para completar: ${input}. Ayúdame a organizarlas en un plan de acción. Proporciona un cronograma sugerido y consejos para manejar posibles obstáculos.`;
+                    break;
+                case 7: // SITUACIONES INTERPERSONALES
+                    finalPrompt = `Estoy enfrentando una situación en mi equipo donde hay problemas con ${input}. Mi objetivo es mejorar este aspecto. ¿Puedes proporcionarme estrategias paso a paso para abordar este problema, incluyendo ejemplos de cómo comunicarme efectivamente y posibles ejercicios o actividades para mejorar la dinámica del equipo?`;
+                    break;
+                case 8: // ANALIZAR DOCUMENTOS / RESUMIR
+                    finalPrompt = `Necesito entender mejor ${input}. Por favor, proporciona un resumen detallado que incluya: los puntos principales, cualquier término técnico importante con sus definiciones, y cómo se aplica esto en un contexto práctico. Si es posible, incluye un ejemplo o caso de estudio para ilustrar los conceptos clave.`;
+                    break;
+                case 9: // CREAR/MEJORAR DOCUMENTOS
+                    finalPrompt = `Regularmente redacto ${input} en mi trabajo. Necesito mejorar su estructura y contenido. ¿Puedes proporcionarme una plantilla detallada para este tipo de documento, incluyendo secciones sugeridas, qué información debería incluir en cada una, y consejos para hacer el documento más efectivo y fácil de leer? También, por favor, dame algunos ejemplos de frases o párrafos que podría usar en diferentes partes del documento.`;
+                    break;
+                case 10: // ARGUMENTAR Y CONTRAARGUMENTAR
+                    finalPrompt = `Tengo una reunión próxima sobre ${input}. ¿Puedes ayudarme a preparar argumentos sólidos para respaldar mi posición? Además, anticipa posibles contraargumentos que puedan surgir y cómo podría responder a ellos de manera efectiva. Por favor, incluye datos o ejemplos que puedan fortalecer mi argumentación.`;
+                    break;
+                case 11: // REDACCIÓN DE TEXTOS
+                    finalPrompt = `Necesito escribir un texto sobre ${input}. ¿Puedes ayudarme a redactar este texto, asegurándote de que sea claro, persuasivo y apropiado para la audiencia? Por favor, incluye una estructura sugerida y frases clave que debería utilizar.`;
+                    break;
+                case 12: // TRADUCCIÓN
+                    finalPrompt = `Tengo un documento en otro idioma sobre ${input}. ¿Puedes proporcionarme un resumen detallado en español, destacando los puntos principales y cualquier término técnico importante? Si hay alguna parte que parezca particularmente importante o compleja, por favor proporciona una traducción más literal de esa sección.`;
+                    break;
+                case 13: // ANÁLISIS DE PÁGINA WEB
+                    finalPrompt = `Me gustaría analizar la página web de ${input}. Por favor, realiza un análisis detallado que incluya: estructura del sitio, diseño visual, contenido principal, llamadas a la acción, estrategia de SEO aparente, y cualquier característica única o innovadora. Además, compara brevemente con los estándares de la industria y sugiere áreas de mejora potencial.`;
+                    break;
+                case 14: // LEYES
+                    finalPrompt = `Necesito entender mejor ${input}. Por favor, proporciona un resumen en lenguaje sencillo que incluya: los puntos principales de la ley, cómo se aplica en situaciones prácticas, y cualquier caso legal relevante que ayude a ilustrar su interpretación. Si hay términos legales complejos, por favor defínelos. También, ¿podrías sugerir algunos recursos confiables para obtener más información?`;
+                    break;
+                case 15: // GENERAR IDEAS
+                    finalPrompt = `Estoy tratando de resolver el siguiente problema: ${input}. Necesito ideas creativas y prácticas. Por favor, genera una lista de al menos 10 posibles soluciones, incluyendo tanto enfoques convencionales como no convencionales. Para cada idea, proporciona una breve explicación de cómo podría implementarse y sus posibles pros y contras.`;
+                    break;
+                case 16: // HACER GRÁFICAS / COMPARATIVOS
+                    finalPrompt = `Necesito crear una gráfica basada en los siguientes datos: ${input}. ¿Puedes sugerir el mejor tipo de gráfica para representar esta información y explicar por qué? Además, proporciona una descripción detallada de cómo debería estructurarse la gráfica, incluyendo títulos, etiquetas de ejes, leyendas, y cualquier otro elemento relevante.`;
+                    break;
+                case 17: // VISUALIZAR CONCEPTOS
+                    finalPrompt = `Crea una visualización atractiva, que sea fácil de entender y explicar sobre ${input}. Asegúrate de conceptualizar gráficamente la idea principal`;
+                    break;
+                case 18: // INVESTIGAR
+                    finalPrompt = `Siempre he querido saber más sobre ${input}. Por favor, realiza una investigación completa y proporciona un informe detallado que incluya: antecedentes históricos, conceptos clave, desarrollos recientes, aplicaciones prácticas, y perspectivas futuras. Asegúrate de incluir datos interesantes y curiosidades que puedan no ser ampliamente conocidas. También, sugiere recursos adicionales para seguir aprendiendo sobre este tema.`;
+                    break;
+                case 19: // CONVERTIR ARCHIVOS
+                    finalPrompt = `Necesito convertir un archivo que contiene ${input}. Muéstrame cómo podría hacer esta conversión y cuál sería el resultado.`;
+                    break;
+                case 20: // CREACIÓN / PROGRAMACIÓN
+                    finalPrompt = `Crea un programa que ${input}. El programa debe ser fácil de usar y proporcionar resultados precisos.`;
+                    break;
+                default:
+                    finalPrompt = `No se pudo generar un prompt para esta capacidad.`;
+            }
+            
+            const capability = capabilities.find(cap => cap.id === selectedCapabilityId);
+            
+            generatedPromptElement.textContent = finalPrompt;
+            examplePromptElement.textContent = capability.example;
+            resultContainer.style.display = 'block';
+        }
+
+        function copyToClipboard() {
+            navigator.clipboard.writeText(generatedPromptElement.textContent).then(function() {
+                copyButton.textContent = '¡Copiado!';
+                copyButton.style.backgroundColor = 'var(--success)';
+                
+                setTimeout(function() {
+                    copyButton.textContent = 'Copiar';
+                    copyButton.style.backgroundColor = 'var(--gray)';
+                }, 2000);
+            }).catch(function(err) {
+                console.error('Error al copiar texto: ', err);
+                alert('No se pudo copiar el texto. Por favor, selecciona el texto y cópialo manualmente.');
+            });
+        }
+        // Funcionalidad para el Módulo 4
+        document.addEventListener('DOMContentLoaded', function() {
+            const modulo4Toggle = document.getElementById('modulo4-toggle');
+            const modulo4Content = document.getElementById('modulo4-content');
+            
+            if (modulo4Toggle) {
+                modulo4Toggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (modulo4Content.style.display === 'none') {
+                        modulo4Content.style.display = 'block';
+                        modulo4Toggle.textContent = 'Ocultar Contenido';
+                    } else {
+                        modulo4Content.style.display = 'none';
+                        modulo4Toggle.textContent = 'Ver Contenido';
+                    }
+                });
+            }
+            
+            const transcriptionToggle4 = document.getElementById('transcription-toggle-4');
+            const transcriptionContent4 = document.getElementById('transcription-content-4');
+            
+            if (transcriptionToggle4) {
+                transcriptionToggle4.addEventListener('click', function() {
+                    if (transcriptionContent4.style.display === 'none') {
+                        transcriptionContent4.style.display = 'block';
+                        transcriptionToggle4.textContent = 'Ocultar Resumen';
+                    } else {
+                        transcriptionContent4.style.display = 'none';
+                        transcriptionToggle4.textContent = 'Ver Resumen';
+                    }
+                });
+            }
+        });
+        
+        // Funciones para mostrar/ocultar recursos del Módulo 4
+        function toggleNoCodeTools() {
+            const noCodeToolsList = document.getElementById('no-code-tools-list');
+            const noCodeToolsToggle = document.getElementById('no-code-tools-toggle');
+            
+            if (noCodeToolsList.style.display === 'none') {
+                noCodeToolsList.style.display = 'block';
+                noCodeToolsToggle.textContent = 'Ocultar lista';
+            } else {
+                noCodeToolsList.style.display = 'none';
+                noCodeToolsToggle.textContent = 'Ver lista';
+            }
+        }
+        
+        function toggleCodeTools() {
+            const codeToolsList = document.getElementById('code-tools-list');
+            const codeToolsToggle = document.getElementById('code-tools-toggle');
+            
+            if (codeToolsList.style.display === 'none') {
+                codeToolsList.style.display = 'block';
+                codeToolsToggle.textContent = 'Ocultar lista';
+            } else {
+                codeToolsList.style.display = 'none';
+                codeToolsToggle.textContent = 'Ver lista';
+            }
+        }
+    </script>
+    <!-- Script para el botón flotante -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const minimizeButton = document.getElementById('minimize-promo');
+            const promoContent = document.getElementById('promo-content');
+            const promoContainer = document.getElementById('promo-container');
+            let isMinimized = false;
+            
+            minimizeButton.addEventListener('click', function() {
+                if (isMinimized) {
+                    // Expandir
+                    promoContent.style.display = 'block';
+                    minimizeButton.textContent = '−';
+                    promoContainer.style.width = '300px';
+                } else {
+                    // Minimizar
+                    promoContent.style.display = 'none';
+                    minimizeButton.textContent = '+';
+                    promoContainer.style.width = '50px';
+                }
+                isMinimized = !isMinimized;
+            });
+        });
+    </script>
+</body>
+</html>
