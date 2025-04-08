@@ -16,26 +16,26 @@
             --warning: #f59e0b;
             --danger: #ef4444;
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
-        
+
         body {
             background-color: #f1f5f9;
             color: var(--dark);
             line-height: 1.6;
         }
-        
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 1rem;
         }
-        
+
         header {
             background-color: var(--primary);
             color: white;
@@ -45,13 +45,13 @@
             z-index: 100;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
-        
+
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        
+
         .logo {
             font-size: 1.5rem;
             font-weight: 700;
@@ -60,11 +60,11 @@
             gap: 0.5rem;
             margin: 0 auto; /* Centrado */
         }
-        
+
         .logo-icon {
             font-size: 1.8rem;
         }
-        
+
         .hero {
             padding: 3rem 0;
             text-align: center;
@@ -73,20 +73,18 @@
             border-radius: 0 0 20px 20px;
             margin-bottom: 2rem;
         }
-        
+
         .hero h1 {
             font-size: 2.5rem;
             margin-bottom: 1rem;
         }
-        
+
         .hero p {
             font-size: 1.2rem;
             max-width: 800px;
             margin: 0 auto 2rem;
         }
-        
-        /* Eliminada la clase .module-grid ya que solo queda un módulo visible por defecto */
-        
+
         .module-card { /* Usado para mostrar el módulo 1 directamente */
             background-color: white;
             border-radius: 10px;
@@ -94,19 +92,36 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
             margin-bottom: 2rem; /* Mantiene el margen inferior */
         }
-        
-        /* Eliminados estilos no necesarios para .module-card:hover y .module-img */
-        
+
         .module-content {
             padding: 1.5rem;
         }
-        
+
         .module-content h3 {
-            font-size: 1.25rem; /* Ajustado para el título dentro del contenido */
+            font-size: 1.25rem;
             margin-bottom: 0.5rem;
             color: var(--dark);
         }
-        
+        /* Estilo para los subtítulos del resumen */
+        #transcription-content h5 {
+            font-size: 1.1rem;
+            color: var(--primary-dark);
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.25rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        /* Estilo para la lista de siguientes pasos */
+         #transcription-content ul {
+            list-style-type: disc;
+            padding-left: 1.5rem; /* Añade indentación a la lista */
+            margin-bottom: 1.5rem; /* Espacio después de la lista */
+        }
+         #transcription-content li {
+            margin-bottom: 0.5rem; /* Espacio entre elementos de la lista */
+        }
+
+
         .module-status {
             display: inline-block;
             padding: 0.25rem 0.75rem;
@@ -115,17 +130,17 @@
             font-weight: 500;
             margin-bottom: 1rem;
         }
-        
+
         .status-available {
             background-color: #ecfdf5;
             color: var(--success);
         }
-        
+
         .status-upcoming {
             background-color: #fef3c7;
             color: var(--warning);
         }
-        
+
         .btn {
             display: inline-block;
             padding: 0.75rem 1.5rem;
@@ -136,39 +151,39 @@
             transition: all 0.3s;
             text-align: center;
         }
-        
+
         .btn-primary {
             background-color: var(--primary);
             color: white;
         }
-        
+
         .btn-primary:hover {
             background-color: var(--primary-dark);
         }
-        
+
         .btn-outline {
             border: 1px solid var(--primary);
             color: var(--primary);
             background-color: transparent;
         }
-        
+
         .btn-outline:hover {
             background-color: var(--primary);
             color: white;
         }
-        
+
         .module-actions {
             display: flex;
             gap: 0.5rem;
             margin-top: 1rem;
         }
-        
+
         .module-actions .btn {
             flex: 1;
             font-size: 0.875rem;
             padding: 0.5rem 1rem;
         }
-        
+
         .section-title {
             text-align: center;
             font-size: 2rem;
@@ -176,7 +191,7 @@
             position: relative;
             padding-bottom: 0.5rem;
         }
-        
+
         .section-title::after {
             content: '';
             position: absolute;
@@ -188,7 +203,7 @@
             background-color: var(--primary);
             border-radius: 2px;
         }
-        
+
         .video-container {
             position: relative;
             padding-bottom: 56.25%; /* 16:9 aspect ratio */
@@ -198,14 +213,14 @@
             border-radius: 8px;
             overflow: hidden;
         }
-        
+
         .resources {
             background-color: #f8fafc;
             border-radius: 8px;
             padding: 1.25rem;
             margin-top: 1.5rem;
         }
-        
+
         .resource-item {
             display: flex;
             align-items: center;
@@ -213,20 +228,20 @@
             border-bottom: 1px solid #e2e8f0;
             gap: 0.75rem;
         }
-        
+
         .resource-item:last-child {
             border-bottom: none;
         }
-        
+
         .resource-icon {
             font-size: 1.5rem;
             color: var(--primary);
         }
-        
+
         .resource-title {
             flex: 1;
         }
-        
+
         .resource-download {
             color: var(--primary);
             font-weight: 500;
@@ -235,34 +250,34 @@
             align-items: center;
             gap: 0.25rem;
         }
-        
+
         footer {
             background-color: var(--dark);
             color: white;
             padding: 3rem 0;
             margin-top: 4rem;
         }
-        
+
         .footer-content {
             display: flex;
             flex-wrap: wrap;
             gap: 2rem;
             justify-content: space-between;
         }
-        
+
         .footer-section {
             max-width: 800px;
             margin: 0 auto;
             text-align: center;
         }
-        
+
         .footer-section h4 {
             font-size: 1.2rem;
             margin-bottom: 1rem;
             position: relative;
             padding-bottom: 0.5rem;
         }
-        
+
         .footer-section h4::after {
             content: '';
             position: absolute;
@@ -274,7 +289,7 @@
             background-color: var(--primary);
             border-radius: 1.5px;
         }
-        
+
         .copyright {
             text-align: center;
             padding-top: 2rem;
@@ -282,18 +297,22 @@
             border-top: 1px solid #334155;
             color: #94a3b8;
         }
-        
+
         @media (max-width: 768px) {
             .section-title {
                 font-size: 1.5rem;
             }
-            
+
             .hero {
                 padding: 2rem 0;
             }
-            
+
             .hero h1 {
                 font-size: 2rem;
+            }
+            /* Ajuste para móviles */
+             #transcription-content h5 {
+                 font-size: 1rem;
             }
         }
     </style>
@@ -303,214 +322,154 @@
         <div class="container header-content">
             <div class="logo">
                 <span class="logo-icon">🧠</span>
-                <span>Taller de IA Aplicada</span>
+                <span>Taller de IA Aplicada a las Ventas</span>
             </div>
         </div>
     </header>
-    
+
     <div class="hero" style="padding: 3rem 0;">
         <div class="container">
-            <h1>Taller de Inteligencia Artificial Aplicada</h1>
+             <h1>Taller de IA Aplicada a las Ventas</h1>
             <p>Bienvenido a la plataforma oficial donde encontrarás todos los materiales y grabaciones del taller. Avanza a tu ritmo y aprovecha los recursos disponibles.</p>
         </div>
     </div>
-    
+
     <main class="container">
         <section id="modules">
-            <h2 class="section-title">Módulo 1: Modelos de lenguaje</h2>
-            
+            <h2 class="section-title">Módulo 1: Estrategia</h2>
+
             <div class="module-card" id="modulo1-content">
                 <div class="module-content">
-                    <p style="margin-bottom: 1.5rem;">Conoce y domina todas las capacidades que los modelos de lenguaje te ofrecen.</p>
-                    
+                    <p style="margin-bottom: 1.5rem;">Conoce los principios fundamentales del crecimiento en ventas y cómo aplicarlos tu negocio para crecer.</p>
+
                     <div class="video-container">
-                        <iframe id="vimeo-player-1" style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://player.vimeo.com/video/1063132876" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                        <iframe id="vimeo-player-1" style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://player.vimeo.com/video/1073410334" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
                     </div>
-                    
+
                     <button id="transcription-toggle" class="btn btn-outline" style="margin-top: 1.5rem;">Ver Resumen</button>
-                    
+
                     <div id="transcription-content" style="display: none; margin-top: 1.5rem; padding: 1.5rem; background-color: #f8fafc; border-radius: 8px; border-left: 4px solid var(--primary);">
-                        <h4>Transcripción del Módulo 1: Modelos de lenguaje</h4>
-                        <ul style="list-style-type: none; padding: 0;">
-                            <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">
-                                <strong>00:00:00 - 00:15:00</strong> - Bienvenida, presentación inicial de participantes y expectativas personales respecto al uso práctico de la IA en sus trabajos.
-                            </li>
-                            <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">
-                                <strong>00:15:01 - 00:30:00</strong> - Introducción al concepto de Inteligencia Artificial Aplicada, resaltando cómo combinar conocimientos especializados con herramientas tecnológicas existentes.
-                            </li>
-                            <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">
-                                <strong>00:30:01 - 00:45:00</strong> - Presentación de los modelos de lenguaje (LLM), qué son, cómo funcionan y ejemplos prácticos de uso en el ámbito laboral.
-                            </li>
-                            <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">
-                                <strong>00:45:01 - 01:00:00</strong> - Explicación sobre la importancia de la mentalidad para el aprendizaje de nuevas tecnologías, destacando la gestión de errores y frustraciones durante el proceso.
-                            </li>
-                            <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">
-                                <strong>01:00:01 - 01:15:00</strong> - Práctica guiada para la creación de cuentas y uso inicial de modelos de lenguaje específicos como ChatGPT, Claude y Grok.
-                            </li>
-                            <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">
-                                <strong>01:15:01 - 01:30:00</strong> - Ejemplos específicos sobre cómo se entrenan los modelos de lenguaje, significado de parámetros y cómo esto influye en su funcionamiento.
-                            </li>
-                            <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">
-                                <strong>01:30:01 - 01:45:00</strong> - Interacción práctica con los modelos para generar ejemplos personalizados sobre aplicaciones concretas de la IA en actividades laborales específicas.
-                            </li>
-                            <li style="padding: 8px 0;">
-                                <strong>01:45:01 - 02:00:00</strong> - Ejercicio final con sugerencias específicas dadas por los modelos sobre cómo aprovechar mejor la IA; reflexiones y cierre de la sesión con recomendaciones finales.
-                            </li>
+                        <h4>Resumen del Módulo 1</h4>
+
+                        <p style="margin-bottom: 1.5rem;"><strong>Resumen rápido:</strong> <strong>Nelson</strong> dirigió un curso sobre estrategias de marketing y ventas, enfatizando la importancia de integrar la tecnología, especialmente la inteligencia artificial, en el crecimiento empresarial y personal. Se discutieron temas como la asignación de presupuestos de marketing, el costo de adquisición de clientes (CAC), la experimentación con diferentes canales de venta y la importancia del copywriting persuasivo. Los participantes compartieron sus experiencias y aprendizajes, aplicando los conceptos a sus propios negocios y recibiendo retroalimentación para mejorar sus estrategias de marketing y comunicación con clientes potenciales.</p>
+
+                        <h5>Siguientes Pasos</h5>
+                        <ul>
+                            <li>Ver la grabación de la clase.</li>
+                            <li>Revisar la comunicación actual dirigida a prospectos (página web, folletos, publicidad, etc.) y buscar formas de hacerla más persuasiva y enfocada en las emociones del cliente.</li>
+                            <li>Definir claramente su segmento de mercado, producto específico a ofrecer y método de venta para una campaña de marketing.</li>
+                            <li>Crear una cuenta gratuita en <strong>ChatGPT</strong>, <strong>Grok</strong> y <strong>Claude</strong> para poder guardar el historial de conversaciones y personalizar las respuestas.</li>
+                            <li>Utilizar el prompt proporcionado por <strong>Nelson</strong> para generar copy persuasivo enfocado en los dolores y deseos del cliente.</li>
+                            <li>Prepararse para la próxima clase donde se trabajará específicamente en crear acciones de prospección para el negocio.</li>
                         </ul>
-                    </div>
-                    
-                    <h3 style="margin-top: 2rem;">Recursos Adicionales</h3>
-                    <div class="resources">
-                        <div class="resource-item" id="modelos-lenguaje-item">
-                            <div class="resource-icon">📝</div>
-                            <div class="resource-title">Lista de Modelos de Lenguaje</div>
-                            <div class="resource-download" onclick="toggleModelList()">
-                                <span id="model-list-toggle">Ver Lista</span>
-                                <span>▼</span>
-                            </div>
-                        </div>
-                        <div id="modelos-list" style="display: none; margin-left: 2.5rem; padding: 1rem; background-color: #f1f5f9; border-radius: 6px;">
-                            <ul style="list-style-type: none; padding: 0;">
-                                <li style="margin-bottom: 0.5rem;"><a href="https://claude.ai/" target="_blank" style="color: var(--primary); text-decoration: none;">Claude</a></li>
-                                <li style="margin-bottom: 0.5rem;"><a href="https://grok.com/" target="_blank" style="color: var(--primary); text-decoration: none;">Grok</a></li>
-                                <li style="margin-bottom: 0.5rem;"><a href="https://chatgpt.com" target="_blank" style="color: var(--primary); text-decoration: none;">ChatGPT</a></li>
-                                <li style="margin-bottom: 0.5rem;"><a href="https://chat.deepseek.com/" target="_blank" style="color: var(--primary); text-decoration: none;">Deepseek</a></li>
-                                <li style="margin-bottom: 0.5rem;"><a href="https://chat.mistral.ai/chat" target="_blank" style="color: var(--primary); text-decoration: none;">Mistral</a></li>
-                                <li style="margin-bottom: 0.5rem;"><a href="https://gemini.google.com/app" target="_blank" style="color: var(--primary); text-decoration: none;">Gemini</a></li>
-                                <li><a href="https://meta.ai/" target="_blank" style="color: var(--primary); text-decoration: none;">Meta</a></li>
-                            </ul>
-                        </div>
-                        
-                        <div class="resource-item">
-                            <div class="resource-icon">🔖</div>
-                            <div class="resource-title">Prompt para potenciar tu Expertise</div>
-                            <div class="resource-download" onclick="togglePrompt()">
-                                <span id="prompt-toggle">Ver Prompt</span>
-                                <span>▼</span>
-                            </div>
-                        </div>
-                        <div id="prompt-content" style="display: none; margin-left: 2.5rem; padding: 1rem; background-color: #f1f5f9; border-radius: 6px;">
-                            <p style="margin-bottom: 1rem;"><strong>Instrucción:</strong> Copia este prompt y pégalo en el modelo de lenguaje de tu elección (ChatGPT, Claude, Gemini, etc.). Personalízalo con tu profesión y tareas específicas para obtener sugerencias adaptadas a tu trabajo.</p>
-                            
-                            <div style="position: relative; margin-bottom: 1rem;">
-                                <h4 style="margin-bottom: 1rem;">Prompt para el profesional:</h4>
-                                <div style="position: relative;">
-                                    <pre id="copy-text" style="white-space: pre-line; font-family: monospace; background-color: #f8fafc; padding: 1rem; border-radius: 4px; border-left: 3px solid var(--primary); margin: 0;">Soy [escribe aquí tu profesión] y mis actividades técnicas incluyen [tu tarea técnica específica, mientras más detallada mejor].  
-                                Quiero utilizar ChatGPT para mejorar mi eficiencia y desempeño en estas áreas. Por favor, sugiéreme tres maneras específicas en las que puedo aprovechar ChatGPT para lograrlo. Para cada idea, proporciona:
-                                * Un prompt específico que pueda usar, indicando entre corchetes los datos que debo ingresar.
-                                * Una descripción detallada de cómo utilizar esa recomendación en mi trabajo diario.
-                                * El tipo de resultado que me proporcionará ChatGPT.
-                                * Cómo puedo aplicar ese resultado para mejorar mis tareas técnicas.</pre>
-                                    <button onclick="copyPrompt()" id="copy-button" style="position: absolute; top: -24px; right: 10px; background-color: var(--primary); color: white; border: none; border-radius: 4px; padding: 5px 10px; cursor: pointer; font-size: 0.8rem;">Copiar</button>
-                                </div>
-                            </div>
-                            
-                            <h4 style="margin-top: 1.5rem; margin-bottom: 1rem;">Ejemplos de referencia:</h4>
-                            
-                            <div style="margin-bottom: 1rem;">
-                                <h5 style="margin-bottom: 0.5rem;">Ejemplo aplicado 1:</h5>
-                                <p style="margin-bottom: 1rem;">Si eres un agrónomo dedicado al diagnóstico de enfermedades en cultivos, podrías ingresar:</p>
-                                <p style="white-space: pre-line; font-family: monospace; background-color: #f8fafc; padding: 1rem; border-radius: 4px; border-left: 3px solid var(--success);">"Soy **agrónomo** y mis actividades técnicas incluyen el **diagnóstico de enfermedades en cultivos**. Por favor, sugiéreme tres maneras específicas en las que puedo utilizar ChatGPT para mejorar o facilitar estas tareas técnicas. Para cada idea, proporciona:
-                                * Un **prompt específico** que pueda usar, indicando entre corchetes los datos que debo ingresar.
-                                * Una **descripción de cómo hacer uso** de esa recomendación.
-                                * El **tipo de resultado** que proporcionará ChatGPT.
-                                * Cómo puedo **utilizar ese output** en mi trabajo."</p>
-                            </div>
-                            
-                            <div>
-                                <h5 style="margin-bottom: 0.5rem;">Ejemplo aplicado 2:</h5>
-                                <p style="margin-bottom: 1rem;">Si eres un analista de datos, podrías ingresar:</p>
-                                <p style="white-space: pre-line; font-family: monospace; background-color: #f8fafc; padding: 1rem; border-radius: 4px; border-left: 3px solid var(--success);">Soy **analista de datos** y mis actividades técnicas incluyen el **análisis de vibraciones y aceites para mantenimiento predictivo**. Quiero utilizar ChatGPT para mejorar mi eficiencia y desempeño en estas áreas. Por favor, sugiéreme tres maneras específicas en las que puedo aprovechar ChatGPT para lograrlo. Para cada idea, proporciona:
-                                * Un **prompt específico** que pueda usar, indicando entre corchetes los datos que debo ingresar.
-                                * Una **descripción detallada** de cómo utilizar esa recomendación en mi trabajo diario.
-                                * El **tipo de resultado** que me proporcionará ChatGPT.
-                                * Cómo puedo **aplicar ese resultado** para mejorar mis tareas técnicas."</p>
-                            </div>
-                        </div>
 
-                        <div class="resource-item">
-                            <div class="resource-icon">🧠</div>
-                            <div class="resource-title">Cómo obtienen información los modelos de lenguaje</div>
-                            <div class="resource-download">
-                                <a href="https://docs.google.com/document/d/1whKDZGyxRiZpACzJAAYMiXrhzm3OE69iIByctRSeQwI/edit?usp=sharing" target="_blank" style="color: var(--primary); text-decoration: none;">
-                                    <span>Descargar</span>
-                                    <span>↓</span>
-                                </a>
-                            </div>
-                        </div>
+                        <h5>Resumen Detallado por Temas</h5>
 
-                        </div>
-                </div>
-            </div>
+                        <h5>Inteligencia Artificial Para El Crecimiento</h5>
+                        <p>Juan Carlos da la bienvenida a los participantes del curso, incluyendo a Mauricio de Ecuador, Luis Piedra (abogado de Machala), Fabiola (agente de viajes de Ciudad de México) y Gabriel (desarrollador inmobiliario de Oaxaca). <strong>Nelson</strong>, el instructor principal, se presenta y comparte su experiencia en ingeniería de software, negocios y desarrollo personal. <strong>Nelson</strong> enfatiza la importancia de integrar la estrategia de negocio, el desarrollo personal y la tecnología, especialmente la inteligencia artificial, para el crecimiento empresarial y personal.</p>
 
-            </section>
-    </main>
-    
-    <footer>
+                        <h5>Presupuesto De Marketing Y CAC</h5>
+                        <p><strong>Nelson</strong> discutió la importancia del presupuesto de marketing en el crecimiento de los negocios. Enfatizó que sin un presupuesto de marketing, los negocios pueden quedarse atascados y depender de las recomendaciones boca a boca para el crecimiento. <strong>Nelson</strong> sugirió que el presupuesto de marketing debería ser ilimitado, pero que el costo de adquisición del cliente (CAC) debería ser del 5 al 15% del precio de venta del producto. Explicó que el CAC es el costo de conseguir un cliente y que puede variar según el modelo de negocio y el precio de venta del producto. <strong>Nelson</strong> también destacó que el CAC puede parecer alto en la primera compra, pero se rentabiliza a lo largo del tiempo a través de las compras repetidas (Lifetime Value). Concluyó que el CAC es una medida importante para evaluar la efectividad de las campañas de marketing.</p>
+
+                        <h5>Marketing: Valor Del Cliente (Lifetime Value)</h5>
+                        <p><strong>Nelson</strong> explica la importancia del marketing en los negocios y cómo asignar un presupuesto para ello, sugiriendo invertir entre un 5% y 10% de los ingresos. Discute estrategias para aumentar el valor del cliente a lo largo del tiempo (Lifetime Value) y cómo esto puede ayudar a justificar mayores gastos en marketing. Luis y Fabiola comparten sus experiencias y reflexiones sobre cómo aplicar estos conceptos en sus respectivos negocios.</p>
+
+                        <h5>Diversificación Y Aprobación De Marketing</h5>
+                        <p><strong>Nelson</strong> explica la importancia de experimentar con diferentes canales de marketing y ventas, como Facebook Ads, ejecutivos de ventas y agentes de IA. Enfatiza que el objetivo es encontrar un equilibrio entre rentabilidad y diversificación de fuentes de captación de clientes, manteniendo aquellos canales que funcionan mientras se prueban nuevos métodos. <strong>Nelson</strong> aconseja evaluar el costo de adquisición de clientes y la rentabilidad de cada canal, pero advierte contra la eliminación inmediata de canales menos rentables, sugiriendo en su lugar ajustes y mejoras continuas.</p>
+
+                        <h5>Construyendo Relaciones Con Clientes Potenciales</h5>
+                        <p><strong>Nelson</strong> enfatizó la importancia de mantener relaciones con los clientes potenciales, incluso si no se convierten en clientes inmediatamente. Sugirió que alrededor del 30% de los clientes potenciales se convierten en clientes dentro de los primeros 6 meses, y otro 20% dentro de los primeros 12 meses. Destacó que el seguimiento y la creación de comunidad con los clientes potenciales pueden aumentar significativamente las tasas de conversión y los ingresos. <strong>Nelson</strong> también resaltó la necesidad de comunicación efectiva para promocionar los beneficios, las promociones y los logros de un negocio. Enfatizó que el marketing, las ventas y las operaciones son igualmente importantes para el éxito de un negocio.</p>
+
+                        <h5>Sesión De Marketing Práctico</h5>
+                        <p><strong>Nelson</strong> dirige una sesión de formación sobre estrategias de marketing y ventas, enfatizando la importancia de aplicar el conocimiento a situaciones de negocio reales. Los participantes, incluyendo Fulbio, Gabriel y Fabs, expresan su aprecio por el enfoque práctico del curso. Durante un descanso, JUAN y algunos participantes discuten sobre la importancia de entender los procesos para tomar mejores decisiones. Fabs comparte su experiencia en la industria de viajes, especializándose en cruceros y trámites de visas, destacando las diferencias entre los requisitos para visas canadienses y estadounidenses.</p>
+
+                        <h5>Estrategias De Prospección Local</h5>
+                        <p><strong>Nelson</strong> lidera una discusión sobre estrategias de prospección y marketing, enfatizando la importancia de enfocarse en un segmento específico a la vez. Explica que la promoción debe basarse en el público objetivo, no en el producto o servicio ofrecido, y guía a los participantes para que definan sus segmentos de mercado ideales. Los asistentes, incluyendo Fabio, Fabiola, Erika y Luis, comparten ejemplos de sus públicos objetivos, recibiendo retroalimentación de <strong>Nelson</strong> para afinar sus descripciones y enfoque.</p>
+
+                        <h5>Persuasión Con IA en Copywriting</h5>
+                        <p><strong>Nelson</strong> explica la importancia del copywriting en la persuasión y cómo utilizar la inteligencia artificial para crear textos persuasivos. Enfatiza la necesidad de conectar emocionalmente con los clientes, centrándose en sus deseos y preocupaciones, especialmente en marketing. Destaca la diferencia entre la persuasión en ventas, marketing y operaciones, señalando que el marketing requiere el máximo nivel de persuasión. <strong>Nelson</strong> demuestra cómo usar herramientas de IA (como <strong>ChatGPT</strong>) para generar propuestas de valor y frases persuasivas, utilizando como ejemplo un servicio de recuperación de IVA para empresas.</p>
+
+                        <h5>Nelson Impulsa Sesiones De Emoción</h5>
+                        <p><strong>Nelson</strong> dirige una sesión sobre cómo crear propuestas de valor y mensajes efectivos para productos o servicios. Enfatiza la importancia de enfocarse en los beneficios para el cliente y las emociones, en lugar de características técnicas. Fulbio y Fabs comparten ejemplos de propuestas de valor y dolores del cliente para un parque de trampolines y servicios de visa canadiense, respectivamente. <strong>Nelson</strong> destaca la necesidad de conectar emocionalmente con los clientes, incluso en servicios técnicos, y sugiere tener múltiples opciones de IA para generar contenido.</p>
+
+                        <h5>Escribir Para Persuadir Clientes</h5>
+                        <p><strong>Nelson</strong> y Juan Carlos discuten la importancia de la escritura persuasiva en el marketing, enfatizando el uso de palabras que evoquen emociones y se centren en los beneficios para el cliente. <strong>Nelson</strong> explica que el copywriting efectivo se enfoca en aliviar el dolor del cliente y cumplir sus deseos, utilizando psicología del consumidor para crear textos que mantengan el interés del lector. Se menciona que en la próxima clase se abordarán formas concretas de aplicar estas técnicas en diferentes plataformas de marketing. Los participantes comparten sus aprendizajes, destacando la importancia de las emociones en la prospección y el marketing.</p>
+
+                        <h5>Entrenamiento De Marketing Emocional</h5>
+                        <p><strong>Nelson</strong> dirige una clase sobre marketing y persuasión, enfatizando la importancia de conectar emocionalmente con los clientes potenciales. Los participantes, incluyendo a Luis, Gissenia y Gabriel, comparten sus experiencias y aprendizajes sobre el tema. <strong>Nelson</strong> recomienda revisar la grabación de la clase, aplicar los conceptos aprendidos a las comunicaciones existentes con clientes potenciales, y sugiere utilizar herramientas de inteligencia artificial como <strong>ChatGPT</strong> para mejorar el contenido persuasivo. Se discute la importancia de crear una cuenta en plataformas de IA para personalizar las respuestas y mantener un historial de conversaciones.</p>
+
+                    </div> <h3 style="margin-top: 2rem;">Recurso Adicional</h3>
+                     <div class="resources">
+                         <div class="resource-item">
+                             <div class="resource-icon">✨</div> <div class="resource-title">Prompt de generación de contenido persuasivo</div>
+                             <div class="resource-download" onclick="togglePersuasivePrompt()">
+                                 <span id="persuasive-prompt-toggle">Ver prompt</span>
+                                 <span>▼</span>
+                             </div>
+                         </div>
+                         <div id="persuasive-prompt-content" style="display: none; margin-left: 2.5rem; padding: 1rem; background-color: #f1f5f9; border-radius: 6px;">
+                             <div style="position: relative; margin-bottom: 1rem;">
+                                 <div style="position: relative;">
+                                     <pre id="persuasive-copy-text" style="white-space: pre-wrap; font-family: monospace; background-color: #f8fafc; padding: 1rem; border-radius: 4px; border-left: 3px solid var(--primary); margin: 0; overflow-x: auto;">
+Análisis Psicológico AVANZADO y Propuesta de Valor Persuasiva
+
+Actúa como el estratega de marketing más prestigioso del mundo, especializado en psicología del consumidor y copywriting de alto impacto. Necesito identificar los puntos de dolor más PROFUNDOS y OCULTOS del siguiente segmento:
+
+Segmento de mercado: [ingresar segmento aquí]
+Servicio/producto que ofrezco: [detallar tu servicio aquí]
+
+Instrucciones para análisis psicológico penetrante:
+
+Analiza el VERDADERO estado emocional de este segmento:
+¿Qué les quita el sueño por la noche?
+¿Qué conversaciones tienen cuando nadie los escucha?
+¿Qué deseos no se atreven a confesar públicamente?
+¿Qué imagen tienen que mantener frente a los demás?
+
+Utiliza estos marcos persuasivos:
+Contraste ANTES/DESPUÉS transformacional
+Estructura PAS (Problema-Agitación-Solución)
+Elementos de escasez y urgencia emocional
+Activadores de estatus e identidad aspiracional
+Lenguaje específico del sector que resuene internamente
+
+EXPRÉSALO EXCLUSIVAMENTE en estos formatos de alto impacto:
+• Propuesta de valor principal: Una frase poderosa de máximo 15 palabras que prometa una transformación irresistible y diferenciada de la competencia.
+• Dolor principal (CRÍTICO): Una frase que exponga la herida emocional más profunda, usando palabras que generen un "sí, eso me pasa exactamente a mí".
+• 4 Dolores/deseos secundarios: Frases penetrantes que expongan frustraciones diarias usando el lenguaje interno que usa su mente.
+• Frases hook irresistibles:
+  - Una pregunta provocativa que cuestione su statu quo
+  - Una afirmación disruptiva que desafíe sus creencias limitantes
+  - Una promesa aspiracional que active su deseo de transformación
+  - Un contraste antes/después que visualice el cambio
+
+IMPORTANTE: Cada bullet debe ser TAN PODEROSO que al leerlo sientan escalofríos de reconocimiento. Usa lenguaje visceral, emocional y específico. NADA genérico. Cada frase debe parecer extraída directamente de sus pensamientos más privados.
+
+NO incluyas explicaciones, justificaciones ni contexto. SOLO las frases de alto impacto.
+                                     </pre>
+                                     <button onclick="copyPersuasivePrompt()" id="copy-persuasive-prompt-button" style="position: absolute; top: 10px; right: 10px; background-color: var(--primary); color: white; border: none; border-radius: 4px; padding: 5px 10px; cursor: pointer; font-size: 0.8rem; z-index: 1;">Copiar</button>
+                                 </div>
+                             </div>
+                         </div>
+                     </div> </div> </div> </section> </main> <footer>
         <div class="container footer-content">
             <div class="footer-section">
                 <h4>Sobre el Taller</h4>
-                <p>El Taller de Inteligencia Artificial Aplicada está diseñado para proporcionar conocimientos prácticos y teóricos en el campo de la IA, permitiendo a los participantes desarrollar habilidades aplicables en entornos profesionales.</p>
+                <p>El Taller de Inteligencia Artificial Aplicada a las Ventas está diseñado para proporcionar conocimientos prácticos en el campo de la IA, permitiendo a los participantes implementar estrategias de crecimiento empresarial.</p>
             </div>
         </div>
-        
+
         <div class="copyright">
             <p>© 2025 Taller de Inteligencia Artificial Aplicada. Todos los derechos reservados.</p>
         </div>
     </footer>
-    
+
     <script>
-        // Función para mostrar/ocultar la lista de modelos (Módulo 1)
-        function toggleModelList() {
-            const modelList = document.getElementById('modelos-list');
-            const modelListToggle = document.getElementById('model-list-toggle');
-            
-            if (modelList.style.display === 'none') {
-                modelList.style.display = 'block';
-                modelListToggle.textContent = 'Ocultar Lista';
-            } else {
-                modelList.style.display = 'none';
-                modelListToggle.textContent = 'Ver Lista';
-            }
-        }
-
-        // Función para mostrar/ocultar el prompt (Módulo 1)
-        function togglePrompt() {
-            const promptContent = document.getElementById('prompt-content');
-            const promptToggle = document.getElementById('prompt-toggle');
-            
-            if (promptContent.style.display === 'none') {
-                promptContent.style.display = 'block';
-                promptToggle.textContent = 'Ocultar Prompt';
-            } else {
-                promptContent.style.display = 'none';
-                promptToggle.textContent = 'Ver Prompt';
-            }
-        }
-
-        // Función para copiar el prompt al portapapeles (Módulo 1)
-        function copyPrompt() {
-            const promptText = document.getElementById('copy-text').innerText;
-            navigator.clipboard.writeText(promptText).then(function() {
-                const copyButton = document.getElementById('copy-button');
-                copyButton.textContent = '¡Copiado!';
-                copyButton.style.backgroundColor = 'var(--success)';
-                
-                setTimeout(function() {
-                    copyButton.textContent = 'Copiar';
-                    copyButton.style.backgroundColor = 'var(--primary)';
-                }, 2000);
-            }).catch(function(err) {
-                console.error('Error al copiar texto: ', err);
-                alert('No se pudo copiar el texto. Por favor, selecciona el texto y cópialo manualmente.');
-            });
-        }
-                
-        // Inicializar la transcripción (Módulo 1)
+        // Función para mostrar/ocultar el Resumen Principal (Módulo 1)
         document.addEventListener('DOMContentLoaded', function() {
             const transcriptionToggle = document.getElementById('transcription-toggle');
             const transcriptionContent = document.getElementById('transcription-content');
-            
+
             if(transcriptionToggle && transcriptionContent) { // Verificar que los elementos existen
                 transcriptionToggle.addEventListener('click', function() {
                     if (transcriptionContent.style.display === 'none') {
@@ -524,32 +483,46 @@
             }
         });
 
-        // Scripts específicos para Módulos 2, 3, 4 y recursos eliminados del Módulo 1 han sido removidos.
+        // Función para mostrar/ocultar el nuevo prompt persuasivo (Módulo 1 - Recurso Adicional)
+        function togglePersuasivePrompt() {
+            const promptContent = document.getElementById('persuasive-prompt-content');
+            const promptToggle = document.getElementById('persuasive-prompt-toggle');
 
-        /* Eliminado script del botón flotante de promoción ya que el HTML está comentado
-        document.addEventListener('DOMContentLoaded', function() {
-             const minimizeButton = document.getElementById('minimize-promo');
-             const promoContent = document.getElementById('promo-content');
-             const promoContainer = document.getElementById('promo-container');
-             let isMinimized = false;
-             
-             if(minimizeButton && promoContent && promoContainer) { // Check if elements exist
-                 minimizeButton.addEventListener('click', function() {
-                     if (isMinimized) {
-                         // Expandir
-                         promoContent.style.display = 'block';
-                         minimizeButton.textContent = '−';
-                         promoContainer.style.width = '300px';
-                     } else {
-                         // Minimizar
-                         promoContent.style.display = 'none';
-                         minimizeButton.textContent = '+';
-                         promoContainer.style.width = '50px';
-                     }
-                     isMinimized = !isMinimized;
-                 });
-             }
-        }); */
+            if (!promptContent || !promptToggle) return; // Seguridad por si algo falla
+
+            if (promptContent.style.display === 'none') {
+                promptContent.style.display = 'block';
+                promptToggle.textContent = 'Ocultar prompt';
+            } else {
+                promptContent.style.display = 'none';
+                promptToggle.textContent = 'Ver prompt';
+            }
+        }
+
+        // Función para copiar el nuevo prompt persuasivo al portapapeles (Módulo 1 - Recurso Adicional)
+        function copyPersuasivePrompt() {
+            const promptTextElement = document.getElementById('persuasive-copy-text');
+            if (!promptTextElement) return; // Seguridad
+
+            const promptText = promptTextElement.innerText;
+            navigator.clipboard.writeText(promptText).then(function() {
+                const copyButton = document.getElementById('copy-persuasive-prompt-button');
+                if (!copyButton) return; // Seguridad
+
+                copyButton.textContent = '¡Copiado!';
+                copyButton.style.backgroundColor = 'var(--success)';
+
+                setTimeout(function() {
+                    copyButton.textContent = 'Copiar';
+                    copyButton.style.backgroundColor = 'var(--primary)';
+                }, 2000); // Reset button text after 2 seconds
+            }).catch(function(err) {
+                console.error('Error al copiar texto: ', err);
+                // Fallback o alerta al usuario
+                alert('No se pudo copiar el texto automáticamente. Por favor, selecciónalo y cópialo manualmente.');
+            });
+        }
+
     </script>
 
 </body>
