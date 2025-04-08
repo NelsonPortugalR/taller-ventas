@@ -337,8 +337,14 @@
     <main class="container">
         <section id="modules">
             <h2 class="section-title">Módulo 1: Estrategia</h2>
-
-            <div class="module-card" id="modulo1-content">
+    <div id="access-code-prompt" style="background-color: white; padding: 2rem; border-radius: 10px; text-align: center; margin-bottom: 2rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);">
+        <h4 style="margin-bottom: 1rem; color: var(--dark);">Acceso al Módulo</h4>
+        <p style="margin-bottom: 1rem; color: var(--gray);">Por favor, ingresa el código de acceso para ver el contenido:</p>
+        <input type="password" id="access-code-input" placeholder="Código de Acceso" style="padding: 0.75rem; border: 1px solid #e2e8f0; border-radius: 6px; margin-right: 0.5rem; min-width: 200px;">
+        <button id="submit-access-code" class="btn btn-primary">Acceder</button>
+        <p id="access-code-error" style="color: var(--danger); margin-top: 1rem; display: none;">Código incorrecto. Intenta de nuevo.</p>
+    </div>
+            <div class="module-card" id="modulo1-content" style="display: none;">
                 <div class="module-content">
                     <p style="margin-bottom: 1.5rem;">Conoce los principios fundamentales del crecimiento en ventas y cómo aplicarlos tu negocio para crecer.</p>
 
@@ -465,6 +471,46 @@ NO incluyas explicaciones, justificaciones ni contexto. SOLO las frases de alto 
     </footer>
 
     <script>
+
+        // Define aquí tu código de acceso secreto
+        const CORRECT_ACCESS_CODE = "IAV2025"; // ¡Cambia esto!
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const submitButton = document.getElementById('submit-access-code');
+            const codeInput = document.getElementById('access-code-input');
+            const promptDiv = document.getElementById('access-code-prompt');
+            const contentDiv = document.getElementById('modulo1-content');
+            const errorP = document.getElementById('access-code-error');
+        
+            if (submitButton && codeInput && promptDiv && contentDiv && errorP) {
+                submitButton.addEventListener('click', function() {
+                    const enteredCode = codeInput.value;
+        
+                    if (enteredCode === CORRECT_ACCESS_CODE) {
+                        // Código correcto: Ocultar prompt y mostrar contenido
+                        promptDiv.style.display = 'none';
+                        contentDiv.style.display = 'block'; // O el estilo que corresponda si no es 'block'
+                        errorP.style.display = 'none'; // Ocultar error si estaba visible
+                    } else {
+                        // Código incorrecto: Mostrar error y limpiar campo
+                        errorP.style.display = 'block';
+                        codeInput.value = ''; // Limpiar el input
+                        codeInput.focus(); // Poner el foco de nuevo en el input
+                    }
+                });
+        
+                // Opcional: Permitir presionar Enter en el campo de texto
+                codeInput.addEventListener('keypress', function(event) {
+                    if (event.key === 'Enter') {
+                        event.preventDefault(); // Evita cualquier comportamiento por defecto de Enter
+                        submitButton.click(); // Simula un clic en el botón
+                    }
+                });
+            } else {
+                console.error("Error: No se encontraron todos los elementos para el acceso por código.");
+            }
+        });
+        // --- Fin del código para la verificación de Acceso ---
         // Función para mostrar/ocultar el Resumen Principal (Módulo 1)
         document.addEventListener('DOMContentLoaded', function() {
             const transcriptionToggle = document.getElementById('transcription-toggle');
