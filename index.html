@@ -564,31 +564,8 @@ NO incluyas explicaciones, justificaciones ni contexto. SOLO las frases de alto 
                                 <h5>LinkedIn Para Prospección De Negocios</h5>
                                 <p>Nelson presenta estrategias para utilizar LinkedIn como herramienta de prospección y networking profesional, destacando su potencial para diversos tipos de negocios y servicios. Explica cómo crear un perfil efectivo, enviar mensajes personalizados y generar reuniones con posibles clientes. También menciona brevemente que en la próxima sesión se abordará el uso de Facebook para marketing y prospección, y anima a los participantes a implementar lo aprendido enviando mensajes a 80-100 contactos en LinkedIn.</p>
                             </div>
-                    
-                            <h3 style="margin-top: 2rem;">Recurso Adicional</h3>
-                            <div class="resources">
-                                <div class="resource-item">
-                                    <div class="resource-icon">📱</div>
-                                    <div class="resource-title">Plantilla de mensaje de 9 palabras</div>
-                                    <div class="resource-download" onclick="toggleFollowupTemplate()">
-                                        <span id="followup-template-toggle">Ver plantilla</span>
-                                        <span>▼</span>
-                                    </div>
-                                </div>
-                                <div id="followup-template-content" style="display: none; margin-left: 2.5rem; padding: 1rem; background-color: #f1f5f9; border-radius: 6px;">
-                                    <div style="position: relative; margin-bottom: 1rem;">
-                                        <div style="position: relative;">
-                                            <pre id="followup-template-text" style="white-space: pre-wrap; font-family: monospace; background-color: #f8fafc; padding: 1rem; border-radius: 4px; border-left: 3px solid var(--primary); margin: 0; overflow-x: auto;">
-                    Hola [Nombre], solo quería saber si todavía estás interesado/a en [beneficio/resultado]?
-                                            </pre>
-                                            <button onclick="copyFollowupTemplate()" id="copy-followup-template-button" style="position: absolute; top: 10px; right: 10px; background-color: var(--primary); color: white; border: none; border-radius: 4px; padding: 5px 10px; cursor: pointer; font-size: 0.8rem; z-index: 1;">Copiar</button>
-                                        </div>
-                                    </div>
-                                    <p style="margin-top: 1rem; font-style: italic;">Instrucciones: Reemplaza [Nombre] con el nombre del contacto y [beneficio/resultado] con el beneficio principal que ofrece tu producto o servicio. Ejemplo: "Hola María, solo quería saber si todavía estás interesada en mejorar tu presencia online?"</p>
-                                </div>
-                            </div>
                         </div>
-                    </div>    
+                    </div>   
         <div class="container footer-content">
             <div class="footer-section">
                 <h4>Sobre el Taller</h4>
@@ -751,45 +728,6 @@ NO incluyas explicaciones, justificaciones ni contexto. SOLO las frases de alto 
                 });
             }
         });
-        
-        // Función para mostrar/ocultar la plantilla de mensaje de seguimiento
-        function toggleFollowupTemplate() {
-            const templateContent = document.getElementById('followup-template-content');
-            const templateToggle = document.getElementById('followup-template-toggle');
-        
-            if (!templateContent || !templateToggle) return;
-        
-            if (templateContent.style.display === 'none') {
-                templateContent.style.display = 'block';
-                templateToggle.textContent = 'Ocultar plantilla';
-            } else {
-                templateContent.style.display = 'none';
-                templateToggle.textContent = 'Ver plantilla';
-            }
-        }
-        
-        // Función para copiar la plantilla de mensaje de seguimiento
-        function copyFollowupTemplate() {
-            const templateTextElement = document.getElementById('followup-template-text');
-            if (!templateTextElement) return;
-        
-            const templateText = templateTextElement.innerText;
-            navigator.clipboard.writeText(templateText).then(function() {
-                const copyButton = document.getElementById('copy-followup-template-button');
-                if (!copyButton) return;
-        
-                copyButton.textContent = '¡Copiado!';
-                copyButton.style.backgroundColor = 'var(--success)';
-        
-                setTimeout(function() {
-                    copyButton.textContent = 'Copiar';
-                    copyButton.style.backgroundColor = 'var(--primary)';
-                }, 2000);
-            }).catch(function(err) {
-                console.error('Error al copiar texto: ', err);
-                alert('No se pudo copiar el texto automáticamente. Por favor, selecciónalo y cópialo manualmente.');
-            });
-        }
     </script>
 
 </body>
