@@ -671,97 +671,97 @@ NO incluyas explicaciones, justificaciones ni contexto. SOLO las frases de alto 
                 alert('No se pudo copiar el texto automáticamente. Por favor, selecciónalo y cópialo manualmente.');
             });
         }
-// --- Código para la verificación de Acceso del Módulo 2 ---
-document.addEventListener('DOMContentLoaded', function() {
-    const submitButton2 = document.getElementById('submit-access-code-2');
-    const codeInput2 = document.getElementById('access-code-input-2');
-    const promptDiv2 = document.getElementById('access-code-prompt-2');
-    const contentDiv2 = document.getElementById('modulo2-content');
-    const errorP2 = document.getElementById('access-code-error-2');
-
-    if (submitButton2 && codeInput2 && promptDiv2 && contentDiv2 && errorP2) {
-        submitButton2.addEventListener('click', function() {
-            const enteredCode = codeInput2.value;
-
-            if (enteredCode === CORRECT_ACCESS_CODE) {
-                // Código correcto: Ocultar prompt y mostrar contenido
-                promptDiv2.style.display = 'none';
-                contentDiv2.style.display = 'block';
-                errorP2.style.display = 'none';
+        // --- Código para la verificación de Acceso del Módulo 2 ---
+        document.addEventListener('DOMContentLoaded', function() {
+            const submitButton2 = document.getElementById('submit-access-code-2');
+            const codeInput2 = document.getElementById('access-code-input-2');
+            const promptDiv2 = document.getElementById('access-code-prompt-2');
+            const contentDiv2 = document.getElementById('modulo2-content');
+            const errorP2 = document.getElementById('access-code-error-2');
+        
+            if (submitButton2 && codeInput2 && promptDiv2 && contentDiv2 && errorP2) {
+                submitButton2.addEventListener('click', function() {
+                    const enteredCode = codeInput2.value;
+        
+                    if (enteredCode === CORRECT_ACCESS_CODE) {
+                        // Código correcto: Ocultar prompt y mostrar contenido
+                        promptDiv2.style.display = 'none';
+                        contentDiv2.style.display = 'block';
+                        errorP2.style.display = 'none';
+                    } else {
+                        // Código incorrecto: Mostrar error y limpiar campo
+                        errorP2.style.display = 'block';
+                        codeInput2.value = ''; // Limpiar el input
+                        codeInput2.focus(); // Poner el foco de nuevo en el input
+                    }
+                });
+        
+                // Permitir presionar Enter en el campo de texto
+                codeInput2.addEventListener('keypress', function(event) {
+                    if (event.key === 'Enter') {
+                        event.preventDefault();
+                        submitButton2.click();
+                    }
+                });
+            }
+        });
+        
+        // Función para mostrar/ocultar el Resumen del Módulo 2
+        document.addEventListener('DOMContentLoaded', function() {
+            const transcriptionToggle2 = document.getElementById('transcription-toggle-2');
+            const transcriptionContent2 = document.getElementById('transcription-content-2');
+        
+            if(transcriptionToggle2 && transcriptionContent2) {
+                transcriptionToggle2.addEventListener('click', function() {
+                    if (transcriptionContent2.style.display === 'none') {
+                        transcriptionContent2.style.display = 'block';
+                        transcriptionToggle2.textContent = 'Ocultar Resumen';
+                    } else {
+                        transcriptionContent2.style.display = 'none';
+                        transcriptionToggle2.textContent = 'Ver Resumen';
+                    }
+                });
+            }
+        });
+        
+        // Función para mostrar/ocultar la plantilla de mensaje de seguimiento
+        function toggleFollowupTemplate() {
+            const templateContent = document.getElementById('followup-template-content');
+            const templateToggle = document.getElementById('followup-template-toggle');
+        
+            if (!templateContent || !templateToggle) return;
+        
+            if (templateContent.style.display === 'none') {
+                templateContent.style.display = 'block';
+                templateToggle.textContent = 'Ocultar plantilla';
             } else {
-                // Código incorrecto: Mostrar error y limpiar campo
-                errorP2.style.display = 'block';
-                codeInput2.value = ''; // Limpiar el input
-                codeInput2.focus(); // Poner el foco de nuevo en el input
+                templateContent.style.display = 'none';
+                templateToggle.textContent = 'Ver plantilla';
             }
-        });
-
-        // Permitir presionar Enter en el campo de texto
-        codeInput2.addEventListener('keypress', function(event) {
-            if (event.key === 'Enter') {
-                event.preventDefault();
-                submitButton2.click();
-            }
-        });
-    }
-});
-
-// Función para mostrar/ocultar el Resumen del Módulo 2
-document.addEventListener('DOMContentLoaded', function() {
-    const transcriptionToggle2 = document.getElementById('transcription-toggle-2');
-    const transcriptionContent2 = document.getElementById('transcription-content-2');
-
-    if(transcriptionToggle2 && transcriptionContent2) {
-        transcriptionToggle2.addEventListener('click', function() {
-            if (transcriptionContent2.style.display === 'none') {
-                transcriptionContent2.style.display = 'block';
-                transcriptionToggle2.textContent = 'Ocultar Resumen';
-            } else {
-                transcriptionContent2.style.display = 'none';
-                transcriptionToggle2.textContent = 'Ver Resumen';
-            }
-        });
-    }
-});
-
-// Función para mostrar/ocultar la plantilla de mensaje de seguimiento
-function toggleFollowupTemplate() {
-    const templateContent = document.getElementById('followup-template-content');
-    const templateToggle = document.getElementById('followup-template-toggle');
-
-    if (!templateContent || !templateToggle) return;
-
-    if (templateContent.style.display === 'none') {
-        templateContent.style.display = 'block';
-        templateToggle.textContent = 'Ocultar plantilla';
-    } else {
-        templateContent.style.display = 'none';
-        templateToggle.textContent = 'Ver plantilla';
-    }
-}
-
-// Función para copiar la plantilla de mensaje de seguimiento
-function copyFollowupTemplate() {
-    const templateTextElement = document.getElementById('followup-template-text');
-    if (!templateTextElement) return;
-
-    const templateText = templateTextElement.innerText;
-    navigator.clipboard.writeText(templateText).then(function() {
-        const copyButton = document.getElementById('copy-followup-template-button');
-        if (!copyButton) return;
-
-        copyButton.textContent = '¡Copiado!';
-        copyButton.style.backgroundColor = 'var(--success)';
-
-        setTimeout(function() {
-            copyButton.textContent = 'Copiar';
-            copyButton.style.backgroundColor = 'var(--primary)';
-        }, 2000);
-    }).catch(function(err) {
-        console.error('Error al copiar texto: ', err);
-        alert('No se pudo copiar el texto automáticamente. Por favor, selecciónalo y cópialo manualmente.');
-    });
-}
+        }
+        
+        // Función para copiar la plantilla de mensaje de seguimiento
+        function copyFollowupTemplate() {
+            const templateTextElement = document.getElementById('followup-template-text');
+            if (!templateTextElement) return;
+        
+            const templateText = templateTextElement.innerText;
+            navigator.clipboard.writeText(templateText).then(function() {
+                const copyButton = document.getElementById('copy-followup-template-button');
+                if (!copyButton) return;
+        
+                copyButton.textContent = '¡Copiado!';
+                copyButton.style.backgroundColor = 'var(--success)';
+        
+                setTimeout(function() {
+                    copyButton.textContent = 'Copiar';
+                    copyButton.style.backgroundColor = 'var(--primary)';
+                }, 2000);
+            }).catch(function(err) {
+                console.error('Error al copiar texto: ', err);
+                alert('No se pudo copiar el texto automáticamente. Por favor, selecciónalo y cópialo manualmente.');
+            });
+        }
     </script>
 
 </body>
