@@ -780,6 +780,58 @@ NO incluyas explicaciones, justificaciones ni contexto. SOLO las frases de alto 
                 });
             }
         });
+        // --- Código para la verificación de Acceso del Módulo 3 ---
+        document.addEventListener('DOMContentLoaded', function() {
+            const submitButton3 = document.getElementById('submit-access-code-3');
+            const codeInput3 = document.getElementById('access-code-input-3');
+            const promptDiv3 = document.getElementById('access-code-prompt-3');
+            const contentDiv3 = document.getElementById('modulo3-content');
+            const errorP3 = document.getElementById('access-code-error-3');
+        
+            if (submitButton3 && codeInput3 && promptDiv3 && contentDiv3 && errorP3) {
+                submitButton3.addEventListener('click', function() {
+                    const enteredCode = codeInput3.value;
+        
+                    if (enteredCode === CORRECT_ACCESS_CODE) {
+                        // Código correcto: Ocultar prompt y mostrar contenido
+                        promptDiv3.style.display = 'none';
+                        contentDiv3.style.display = 'block';
+                        errorP3.style.display = 'none';
+                    } else {
+                        // Código incorrecto: Mostrar error y limpiar campo
+                        errorP3.style.display = 'block';
+                        codeInput3.value = ''; // Limpiar el input
+                        codeInput3.focus(); // Poner el foco de nuevo en el input
+                    }
+                });
+        
+                // Permitir presionar Enter en el campo de texto
+                codeInput3.addEventListener('keypress', function(event) {
+                    if (event.key === 'Enter') {
+                        event.preventDefault();
+                        submitButton3.click();
+                    }
+                });
+            }
+        });
+        
+        // Función para mostrar/ocultar el Resumen del Módulo 3
+        document.addEventListener('DOMContentLoaded', function() {
+            const transcriptionToggle3 = document.getElementById('transcription-toggle-3');
+            const transcriptionContent3 = document.getElementById('transcription-content-3');
+        
+            if(transcriptionToggle3 && transcriptionContent3) {
+                transcriptionToggle3.addEventListener('click', function() {
+                    if (transcriptionContent3.style.display === 'none') {
+                        transcriptionContent3.style.display = 'block';
+                        transcriptionToggle3.textContent = 'Ocultar Resumen';
+                    } else {
+                        transcriptionContent3.style.display = 'none';
+                        transcriptionToggle3.textContent = 'Ver Resumen';
+                    }
+                });
+            }
+        });
     </script>
 
 </body>
