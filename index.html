@@ -871,6 +871,41 @@ NO incluyas explicaciones, justificaciones ni contexto. SOLO las frases de alto 
                 });
             }
         });
+
+    // --- Código para la verificación de Acceso del Módulo 4 ---
+    document.addEventListener('DOMContentLoaded', function() {
+        const submitButton4 = document.getElementById('submit-access-code-4');
+        const codeInput4 = document.getElementById('access-code-input-4');
+        const promptDiv4 = document.getElementById('access-code-prompt-4');
+        const contentDiv4 = document.getElementById('modulo4-content');
+        const errorP4 = document.getElementById('access-code-error-4');
+    
+        if (submitButton4 && codeInput4 && promptDiv4 && contentDiv4 && errorP4) {
+            submitButton4.addEventListener('click', function() {
+                const enteredCode = codeInput4.value;
+    
+                if (enteredCode === CORRECT_ACCESS_CODE) {
+                    // Código correcto: Ocultar prompt y mostrar contenido
+                    promptDiv4.style.display = 'none';
+                    contentDiv4.style.display = 'block';
+                    errorP4.style.display = 'none';
+                } else {
+                    // Código incorrecto: Mostrar error y limpiar campo
+                    errorP4.style.display = 'block';
+                    codeInput4.value = ''; // Limpiar el input
+                    codeInput4.focus(); // Poner el foco de nuevo en el input
+                }
+            });
+    
+            // Permitir presionar Enter en el campo de texto
+            codeInput4.addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    submitButton4.click();
+                }
+            });
+        }
+    });    
     </script>
 
 </body>
